@@ -1,122 +1,130 @@
-# Anoma Academy - Interactive Learning Platform
+# 🏛️ Anoma Academy - Complete Learning Platform
 
-## 🎯 Project Overview
+A comprehensive interactive learning platform designed to teach Anoma blockchain concepts through gamification. Learn, earn points, and master Web3 concepts through engaging games and educational content.
 
-Anoma Academy is a comprehensive gamified learning platform designed to educate users about Anoma blockchain technology through interactive games, quizzes, and visual puzzles. The platform combines educational content with engaging gameplay to make learning about Anoma's intent-centric architecture, privacy features, and cross-chain capabilities both fun and effective.
+## 🌟 Features
 
-## 🎮 Complete Game Collection (15+ Interactive Experiences)
+### 📚 Educational Content
+- **Interactive Lessons**: Comprehensive tutorials on Anoma blockchain concepts
+- **Intent-Centric Learning**: Focus on privacy-preserving cross-chain operations
+- **Zero-Knowledge Proofs**: Learn about ZK concepts through interactive puzzles
+- **Progressive Learning**: Start from basics and advance to complex concepts
 
-### 📚 Knowledge Games
-- **Anoma Quiz Master** - Test your knowledge with 50+ Anoma-specific questions
-- **Intent Matching Game** - Match intents with their corresponding actions
-- **Privacy Puzzle** - Learn about Zero-Knowledge Proofs through interactive puzzles
-- **Cross-Chain Explorer** - Understand Anoma's interoperability features
-- **MEV Protection Quiz** - Learn about Maximum Extractable Value protection
+### 🎮 Gaming Experience
+- **Point System**: Earn points by completing lessons and playing games
+- **Multiple Game Categories**:
+  - **Action Games**: Shrimp Jump, Shrimp Collector, Wizard Coin Game
+  - **Strategy Games**: Intent Archery, Intent Snake, Intent Tower Defense
+  - **Puzzle Games**: Privacy Puzzle, Anoma Memory, Privacy Guardian
+  - **Educational Games**: Intent Builder, Intent Dice
+- **Achievement System**: Unlock rewards and track progress
+- **Interactive Mascots**: Clickable Anoma shrimp mascots for bonus points
 
-### 🧩 Puzzle & Visual Games
-- **Anoma Memory** - Memory card game with Anoma concepts
-- **Intent Tower Defense** - Strategic tower defense with Anoma mechanics
-- **Intent Dice** - Probability-based dice game
-- **Intent Puzzle** - Sliding number puzzle (Huarong Dao style)
+### 🎯 Game Categories
 
-### 🎯 Action & Arcade Games
-- **Shrimp Jump Game** - Endless runner with Anoma shrimp character
-- **Intent Archery** - Precision shooting game
-- **Speed Intent** - Fast-paced reaction game
-- **Intent Snake** - Classic snake game collecting Anoma shrimps
-- **More Games Coming Soon!** - Stay tuned for exciting new additions
+#### 🏃 Action & Arcade Games
+- **🦐 Shrimp Jump Game**: Endless runner with Anoma shrimp mascot
+- **🦐 Shrimp Collector**: Fast-paced arcade game collecting falling shrimps
+- **🧙 Wizard Coin Game**: Skill-based coin catching game
+- **🎯 Intent Archery**: Precision shooting at moving targets
 
-## 🚀 Latest Update - v2.0
+#### 🧩 Puzzle & Visual Games
+- **🔐 Privacy Puzzle**: Solve puzzles using zero-knowledge concepts
+- **🧠 Anoma Memory**: Match Anoma concepts and test memory
+- **🛡️ Privacy Guardian**: Protect user data using ZK proofs
+- **🎯 Intent Builder**: Create complex multi-step intents
+- **🎮 Intent Tower Defense**: Strategy game defending against attacks
 
-### ✨ New Features
-- **2 New Games**: Intent Snake and Intent Puzzle added to Action & Arcade Games
-- **Enhanced UI**: Improved game categorization and visual design
-- **Bug Fixes**: Fixed Speed Intent game functionality and Intent Tower Defense display
-- **Game Categories**: Reorganized games into Knowledge, Puzzle & Visual, and Action & Arcade sections
-
-### 🎯 Game Improvements
-- **Intent Snake**: Classic snake game with Anoma shrimp collection
-- **Intent Puzzle**: 3x3 sliding number puzzle with clear objectives
-- **Speed Intent**: Redesigned with proper game mechanics and scoring
-- **Intent Tower Defense**: Fixed UI issues and improved gameplay flow
-
-## 💡 Project Value & Impact
-
-### 🎓 Educational Impact
-- **Comprehensive Learning**: Covers all major Anoma concepts through interactive experiences
-- **Progressive Difficulty**: Games range from beginner to advanced levels
-- **Multi-Modal Learning**: Combines visual, textual, and interactive learning methods
-
-### 🎮 User Engagement
-- **Gamification**: Points, levels, and achievements system
-- **Variety**: 15+ different game types to maintain interest
-- **Replayability**: Multiple difficulty levels and randomized content
-
-### 🌐 Community Building
-- **Anoma Ecosystem**: Direct integration with official Anoma resources
-- **Educational Resource**: Valuable tool for Anoma community education
-- **Open Source**: Contributes to Anoma's educational ecosystem
-
-## 🛠️ Technical Features
-
-- **Pure Frontend**: HTML, CSS, JavaScript implementation
-- **Responsive Design**: Works on desktop and mobile devices
-- **Local Storage**: Saves progress and achievements
-- **Modern UI**: Clean, professional interface with Anoma branding
-- **Cross-Platform**: Compatible with all modern browsers
-
-## 📁 File Structure
-
-```
-anoma-academy/
-├── index.html                 # Main application file
-├── README.md                  # This documentation
-└── assets/                    # Game assets and resources
-```
+#### 🎲 Strategy & Building Games
+- **🎲 Intent Dice**: Roll dice to build intent combinations
+- **🐍 Intent Snake**: Classic snake game with Anoma shrimps
+- **🏰 Intent Tower Defense**: Build towers to defend against enemies
 
 ## 🚀 Getting Started
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/xudan168/anoma-academy.git
-   ```
+1. **Open the HTML file** in your web browser
+2. **Start with lessons** to learn Anoma concepts
+3. **Earn points** by completing educational content
+4. **Play games** using your earned points
+5. **Track your progress** and unlock achievements
 
-2. **Open the application**:
-   - Simply open `index.html` in your web browser
-   - Or deploy to GitHub Pages for online access
+## 🎮 How to Play
 
-3. **Start Learning**:
-   - Begin with Knowledge Games to learn Anoma concepts
-   - Progress to Puzzle & Visual Games for hands-on practice
-   - Enjoy Action & Arcade Games for fun reinforcement
+1. **Learn First**: Complete lessons to understand Anoma concepts
+2. **Earn Points**: Each lesson and game completion awards points
+3. **Spend Wisely**: Use points to unlock and play games
+4. **Master Concepts**: Progress through different difficulty levels
+5. **Have Fun**: Enjoy the interactive learning experience!
 
-## 🎯 How to Play
+## 🌐 Anoma Blockchain Features
 
-### Knowledge Games
-- Answer questions correctly to earn points
-- Learn about Anoma's intent-centric architecture
-- Understand privacy and cross-chain features
+- **⚡ Intent-First Architecture**: User intents drive blockchain operations
+- **🔐 Privacy by Design**: Built-in privacy-preserving mechanisms
+- **🌐 Cross-Chain Native**: Seamless interoperability across blockchains
+- **🛡️ Zero-Knowledge Proofs**: Advanced privacy technology
+- **🎯 User-Centric**: Focus on user experience and privacy
 
-### Puzzle & Visual Games
-- Use logic and memory to solve puzzles
-- Learn through interactive visual elements
-- Develop strategic thinking skills
+## 🛠️ Technical Features
 
-### Action & Arcade Games
-- Test reflexes and coordination
-- Reinforce learning through gameplay
-- Enjoy classic game mechanics with Anoma themes
+- **Responsive Design**: Works on desktop and mobile devices
+- **Modern UI/UX**: Clean, intuitive interface with Anoma branding
+- **Interactive Elements**: Clickable mascots, animated components
+- **Progress Tracking**: Real-time point and achievement tracking
+- **Game Integration**: Seamless transition between learning and gaming
 
-## 🔗 Official Anoma Resources
+## 🎨 Design Philosophy
 
-- **Website**: [anoma.network](https://anoma.network)
-- **Twitter**: [@anoma](https://twitter.com/anoma)
-- **Blog**: [anoma.network/blog](https://anoma.network/blog)
-- **Documentation**: [docs.anoma.network](https://docs.anoma.network)
+- **Educational Gamification**: Learning through play and interaction
+- **Anoma Branding**: Consistent visual identity and color scheme
+- **User Experience**: Intuitive navigation and engaging content
+- **Progressive Disclosure**: Information revealed as users advance
+- **Accessibility**: Clear typography and user-friendly interface
 
-## 👨‍💻 Author
+## 📱 Browser Compatibility
 
-**Created by**: [@251262871Com](https://twitter.com/251262871Com) | Discord: More2591
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
+- Mobile browsers
+
+## 🎯 Target Audience
+
+- **Blockchain Enthusiasts**: Learn about Anoma's unique approach
+- **Developers**: Understand intent-centric architecture
+- **Students**: Interactive learning experience
+- **Gamers**: Enjoy educational games with real learning value
+- **Privacy Advocates**: Explore privacy-preserving technologies
+
+## 🌟 Key Learning Outcomes
+
+- Understanding of intent-centric blockchain architecture
+- Knowledge of privacy-preserving technologies
+- Familiarity with zero-knowledge proofs
+- Cross-chain interoperability concepts
+- Anoma ecosystem and tools
+
+## 🎮 Game Mechanics
+
+- **Point Economy**: Earn and spend points strategically
+- **Progressive Difficulty**: Games become more challenging
+- **Educational Integration**: Games reinforce learning concepts
+- **Achievement System**: Unlock rewards and track progress
+- **Interactive Feedback**: Real-time responses and animations
+
+---
+
+## 👥 Development Team
+
+**Twitter:**
+- [@251262871Com](https://twitter.com/251262871Com)
+- [@Kivendeen_eth](https://twitter.com/Kivendeen_eth)
+
+**Discord:**
+- More2591
+- luxurious.m
+
+---
 
 ## 📄 License
 
@@ -124,8 +132,12 @@ This project is open source and available under the MIT License.
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests to improve the platform.
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+
+## 📞 Contact
+
+For questions or support, please contact the development team through the provided social media links.
 
 ---
 
-**Anoma Academy** - Making blockchain education fun, interactive, and accessible for everyone! 🚀
+*Built with ❤️ for the Anoma community*
