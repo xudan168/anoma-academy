@@ -1,147 +1,54 @@
-# 🏛️ Anoma Academy - Complete Learning Platform
+# 🏛️ Anoma Academy - Educational Web3 Game Platform
 
-A comprehensive interactive learning platform designed to teach Anoma blockchain concepts through gamification. Learn, earn points, and master Web3 concepts through engaging games and educational content.
+## 🎮 项目简介
+Anoma Academy 是一个创新的Web3教育游戏平台，通过游戏化学习让用户深入了解Anoma区块链的核心理念。
 
-## 🌟 Features
+## ✨ 核心特色
+- **20个完整可玩游戏** - 涵盖不同难度和类型
+- **6个Anoma知识课程** - 从基础到高级
+- **积分成就系统** - 激励持续学习
+- **双语支持** - 中英文界面
+- **响应式设计** - 支持手机和电脑
 
-### 📚 Educational Content
-- **Interactive Lessons**: Comprehensive tutorials on Anoma blockchain concepts
-- **Intent-Centric Learning**: Focus on privacy-preserving cross-chain operations
-- **Zero-Knowledge Proofs**: Learn about ZK concepts through interactive puzzles
-- **Progressive Learning**: Start from basics and advance to complex concepts
+## 🎮 游戏类型
 
-### 🎮 Gaming Experience
-- **Point System**: Earn points by completing lessons and playing games
-- **Multiple Game Categories**:
-  - **Action Games**: Shrimp Jump, Shrimp Collector, Wizard Coin Game
-  - **Racing Games**: Anoma Racing
-  - **Strategy Games**: Intent Archery, Intent Snake, Intent Tower Defense
-  - **Puzzle Games**: Privacy Puzzle, Anoma Memory, Privacy Guardian
-  - **Educational Games**: Intent Builder, Intent Dice
-- **Achievement System**: Unlock rewards and track progress
-- **Interactive Mascots**: Clickable Anoma shrimp mascots for bonus points
+### 🧩 益智游戏 (Puzzle Games)
+1. **Intent Matching** - 意图匹配游戏
+2. **Privacy Puzzle** - 隐私拼图挑战
+3. **Privacy Puzzle (Visual)** - 可视化隐私拼图
+4. **Anoma Memory** - 记忆配对游戏
+5. **Privacy Guardian** - 隐私守护者
+6. **Intent Builder** - 意图构建器
 
-### 🎯 Game Categories
+### 🎯 动作游戏 (Action Games)
+7. **Intent Tower Defense** - 意图塔防
+8. **Shrimp Jump** - 大虾跳跃
+9. **Shrimp Collector** - 大虾收集
+10. **Wizard Coin Game** - 巫师接金币
+11. **Intent Archery** - 意图射箭
+12. **Intent Snake** - 意图贪吃蛇
+13. **Anoma Racing** - Anoma赛车
+14. **Tetris** - 俄罗斯方块
+15. **Cross-Chain Challenge** - 跨链挑战
+16. **Speed Intent** - 快速意图理解
+17. **Intent Detective** - 意图侦探分析
+18. **Intent Dice** - 策略骰子游戏
+19. **Bridge Master** - 跨链桥接大师
+20. **Intent Runner** - 意图跑酷游戏
 
-#### 🏃 Action & Arcade Games
-- **🦐 Shrimp Jump Game**: Endless runner with Anoma shrimp mascot
-- **🦐 Shrimp Collector**: Fast-paced arcade game collecting falling shrimps
-- **🧙 Wizard Coin Game**: Skill-based coin catching game
-- **🎯 Intent Archery**: Precision shooting at moving targets
+## 🌐 在线体验
+**GitHub Pages**: https://xudan168.github.io/anoma-academy
 
-#### 🏎️ Racing Games
-- **🏎️ Anoma Racing**: Race through Anoma's blockchain network and collect tokens
+## 🛠️ 技术特点
+- 纯前端实现 - 单文件HTML/CSS/JavaScript
+- 物理引擎 - 真实的游戏物理效果
+- 动画系统 - 流畅的视觉反馈
+- 状态管理 - 完整的游戏状态跟踪
 
-#### 🧩 Puzzle & Visual Games
-- **🔐 Privacy Puzzle**: Solve puzzles using zero-knowledge concepts
-- **🧠 Anoma Memory**: Match Anoma concepts and test memory
-- **🛡️ Privacy Guardian**: Protect user data using ZK proofs
-- **🎯 Intent Builder**: Create complex multi-step intents
-- **🎮 Intent Tower Defense**: Strategy game defending against attacks
+## 📱 社交媒体
+- **Anoma官方**: [@anomanetwork](https://twitter.com/anomanetwork)
+- **开发者**: [@251262871Com](https://twitter.com/251262871Com)
+- **官网**: [anoma.network](https://anoma.network)
 
-#### 🎲 Strategy & Building Games
-- **🎲 Intent Dice**: Roll dice to build intent combinations
-- **🐍 Intent Snake**: Classic snake game with Anoma shrimps
-- **🏰 Intent Tower Defense**: Build towers to defend against enemies
-
-## 🚀 Getting Started
-
-1. **Open the HTML file** in your web browser
-2. **Start with lessons** to learn Anoma concepts
-3. **Earn points** by completing educational content
-4. **Play games** using your earned points
-5. **Track your progress** and unlock achievements
-
-## 🎮 How to Play
-
-1. **Learn First**: Complete lessons to understand Anoma concepts
-2. **Earn Points**: Each lesson and game completion awards points
-3. **Spend Wisely**: Use points to unlock and play games
-4. **Master Concepts**: Progress through different difficulty levels
-5. **Have Fun**: Enjoy the interactive learning experience!
-
-## 🌐 Anoma Blockchain Features
-
-- **⚡ Intent-First Architecture**: User intents drive blockchain operations
-- **🔐 Privacy by Design**: Built-in privacy-preserving mechanisms
-- **🌐 Cross-Chain Native**: Seamless interoperability across blockchains
-- **🛡️ Zero-Knowledge Proofs**: Advanced privacy technology
-- **🎯 User-Centric**: Focus on user experience and privacy
-
-## 🛠️ Technical Features
-
-- **Responsive Design**: Works on desktop and mobile devices
-- **Modern UI/UX**: Clean, intuitive interface with Anoma branding
-- **Interactive Elements**: Clickable mascots, animated components
-- **Progress Tracking**: Real-time point and achievement tracking
-- **Game Integration**: Seamless transition between learning and gaming
-
-## 🎨 Design Philosophy
-
-- **Educational Gamification**: Learning through play and interaction
-- **Anoma Branding**: Consistent visual identity and color scheme
-- **User Experience**: Intuitive navigation and engaging content
-- **Progressive Disclosure**: Information revealed as users advance
-- **Accessibility**: Clear typography and user-friendly interface
-
-## 📱 Browser Compatibility
-
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-- Mobile browsers
-
-## 🎯 Target Audience
-
-- **Blockchain Enthusiasts**: Learn about Anoma's unique approach
-- **Developers**: Understand intent-centric architecture
-- **Students**: Interactive learning experience
-- **Gamers**: Enjoy educational games with real learning value
-- **Privacy Advocates**: Explore privacy-preserving technologies
-
-## 🌟 Key Learning Outcomes
-
-- Understanding of intent-centric blockchain architecture
-- Knowledge of privacy-preserving technologies
-- Familiarity with zero-knowledge proofs
-- Cross-chain interoperability concepts
-- Anoma ecosystem and tools
-
-## 🎮 Game Mechanics
-
-- **Point Economy**: Earn and spend points strategically
-- **Progressive Difficulty**: Games become more challenging
-- **Educational Integration**: Games reinforce learning concepts
-- **Achievement System**: Unlock rewards and track progress
-- **Interactive Feedback**: Real-time responses and animations
-
----
-
-## 👥 Development Team
-
-**Twitter:**
-- [@251262871Com](https://twitter.com/251262871Com)
-- [@Kivendeen_eth](https://twitter.com/Kivendeen_eth)
-
-**Discord:**
-- More2591
-- luxurious.m
-
----
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
-
-## 📞 Contact
-
-For questions or support, please contact the development team through the provided social media links.
-
----
-
-*Built with ❤️ for the Anoma community*
+## 🚀 立即体验
+让Web3学习变得有趣！通过游戏深入理解Anoma的核心理念。
