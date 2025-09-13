@@ -14,6 +14,7 @@ A comprehensive interactive learning platform designed to teach Anoma blockchain
 - **Point System**: Earn points by completing lessons and playing games
 - **Multiple Game Categories**:
   - **Action Games**: Shrimp Jump, Shrimp Collector, Wizard Coin Game
+  - **Racing Games**: Anoma Racing
   - **Strategy Games**: Intent Archery, Intent Snake, Intent Tower Defense
   - **Puzzle Games**: Privacy Puzzle, Anoma Memory, Privacy Guardian
   - **Educational Games**: Intent Builder, Intent Dice
@@ -27,6 +28,9 @@ A comprehensive interactive learning platform designed to teach Anoma blockchain
 - **🦐 Shrimp Collector**: Fast-paced arcade game collecting falling shrimps
 - **🧙 Wizard Coin Game**: Skill-based coin catching game
 - **🎯 Intent Archery**: Precision shooting at moving targets
+
+#### 🏎️ Racing Games
+- **🏎️ Anoma Racing**: Race through Anoma's blockchain network and collect tokens
 
 #### 🧩 Puzzle & Visual Games
 - **🔐 Privacy Puzzle**: Solve puzzles using zero-knowledge concepts

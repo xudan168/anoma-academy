@@ -6,15 +6,15 @@
     <title>Anoma Academy - Learn, Play, Master</title>
     <style>
         :root {
-            --bg: #0a0a0a;
-            --surface: #1a1a1a;
-            --text: #ffffff;
-            --muted: #888888;
+            --bg: #ffffff;
+            --surface: #f8f9fa;
+            --text: #1a1a1a;
+            --muted: #666666;
             --accent: #00d4ff;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --border: #333333;
+            --border: #e0e0e0;
             
             /* Anoma Brand Colors */
             --anoma-primary: #00d4ff;
@@ -22,6 +22,26 @@
             --anoma-accent: #6366f1;
             --anoma-gradient: linear-gradient(135deg, #00d4ff 0%, #10b981 50%, #6366f1 100%);
             --anoma-glow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Dark theme variables */
+        .dark-theme {
+            --bg: #0a0a0a !important;
+            --surface: #1a1a1a !important;
+            --text: #ffffff !important;
+            --muted: #888888 !important;
+            --accent: #00d4ff !important;
+            --success: #10b981 !important;
+            --warning: #f59e0b !important;
+            --danger: #ef4444 !important;
+            --border: #333333 !important;
+            
+            /* Anoma Brand Colors for dark theme */
+            --anoma-primary: #00d4ff !important;
+            --anoma-secondary: #10b981 !important;
+            --anoma-accent: #6366f1 !important;
+            --anoma-gradient: linear-gradient(135deg, #00d4ff 0%, #10b981 50%, #6366f1 100%) !important;
+            --anoma-glow: 0 0 30px rgba(0, 212, 255, 0.5) !important;
         }
 
         * {
@@ -43,6 +63,43 @@
             padding: 20px;
         }
 
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+
+        .theme-toggle .icon {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover .icon {
+            transform: rotate(180deg);
+        }
+
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -52,32 +109,43 @@
             margin-bottom: 30px;
         }
 
-        .anoma-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .banner-image {
+            text-align: center;
             margin-bottom: 20px;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
         }
 
+        .banner-img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+            box-shadow: none;
+            transition: transform 0.3s ease;
+        }
 
-        .logo-text {
-            text-align: center;
+        .banner-img:hover {
+            transform: scale(1.01);
         }
 
         .anoma-tagline {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 12px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
             padding: 20px 30px;
             margin: 25px auto;
             max-width: 700px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: none;
         }
 
         .anoma-tagline p {
             margin: 0 0 15px 0;
             font-size: 1.1rem;
-            color: var(--accent);
+            color: var(--text);
             font-weight: 500;
         }
 
@@ -91,13 +159,13 @@
 
         .badge {
             background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
+            color: var(--text);
             padding: 6px 14px;
             border-radius: 16px;
             font-size: 0.85rem;
             font-weight: 500;
-            box-shadow: 0 2px 8px rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
             transition: all 0.3s ease;
             backdrop-filter: blur(4px);
         }
@@ -646,7 +714,8 @@
         .author-btn:hover {
             background: rgba(0, 212, 255, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2)        }
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+        }
 
         .game-card.coming-soon {
             opacity: 0.7;
@@ -660,22 +729,42 @@
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button (Hidden) -->
+    <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" style="display: none;">
+        <span class="icon">🌙</span>
+        <span class="text">Dark Mode</span>
+    </button>
+    
+    <!-- Theme Toggle Button -->
+    <button class="theme-btn" onclick="switchTheme()" style="position: fixed; top: 20px; left: 20px; z-index: 9999; background: #00d4ff; color: white; padding: 12px 20px; border: none; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3); transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">Dark Mode</span>
+    </button>
+    
+    <!-- Language Toggle Button -->
+    <button class="lang-btn" onclick="switchLanguage()" style="position: fixed; top: 80px; right: 20px; z-index: 9999; background: #10b981; color: white; padding: 12px 20px; border: none; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+        <span id="lang-icon">🌐</span>
+        <span id="lang-text">中文</span>
+    </button>
+    
     <div class="container">
         <!-- Header -->
         <div class="header">
             <div class="anoma-logo-container">
-                <div class="anoma-logo">
-                    <div class="logo-text">
-                        <h1 class="main-title">Anoma Academy</h1>
-                        <p class="main-subtitle">Learn Anoma Concepts → Earn Points → Play Games → Master Web3</p>
-                    </div>
+                <div class="banner-image">
+                    <img src="aaaa.jpg" alt="Anoma Academy Banner" class="banner-img">
                 </div>
                 <div class="anoma-tagline">
-                    <p>🌐 The Intent-Centric Blockchain for Privacy-Preserving Cross-Chain Operations</p>
+                    <p data-translate="academy-title">🎓 Welcome to Anoma Academy - Your Gateway to Mastering Intent-Centric Blockchain Technology</p>
+                    <p data-translate="academy-desc" style="font-size: 1rem; color: var(--muted); margin-top: 10px;">
+                        Learn, earn points, and play games while discovering the revolutionary world of Anoma's privacy-preserving cross-chain operations. 
+                        From racing through blockchain networks to solving puzzles, our interactive platform makes complex blockchain concepts accessible and fun for everyone.
+                    </p>
                     <div class="anoma-badges">
-                        <span class="badge">⚡ Intent-First</span>
-                        <span class="badge">🔐 Privacy by Design</span>
-                        <span class="badge">🌐 Cross-Chain Native</span>
+                        <span class="badge" data-translate="interactive-learning">🎮 Interactive Learning</span>
+                        <span class="badge" data-translate="gamified-education">🏆 Gamified Education</span>
+                        <span class="badge" data-translate="racing-games">🏎️ Racing Games</span>
+                        <span class="badge" data-translate="future-ready-skills">🚀 Future-Ready Skills</span>
                     </div>
                 </div>
             </div>
@@ -689,210 +778,216 @@
 
         <!-- Player Stats -->
         <div class="card">
-            <h3>📊 Your Progress</h3>
+            <h3 data-translate="your-progress">📊 Your Progress</h3>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div id="points" class="stat-value">1000</div>
-                    <div class="stat-label">Points</div>
+                    <div class="stat-label" data-translate="points">Points</div>
                 </div>
                 <div class="stat-item">
                     <div id="level" class="stat-value">1</div>
-                    <div class="stat-label">Level</div>
+                    <div class="stat-label" data-translate="level">Level</div>
                 </div>
                 <div class="stat-item">
                     <div id="lessons-completed" class="stat-value">0/6</div>
-                    <div class="stat-label">Lessons</div>
+                    <div class="stat-label" data-translate="lessons-completed">Lessons</div>
                 </div>
                 <div class="stat-item">
                     <div id="games-played" class="stat-value">0</div>
-                    <div class="stat-label">Games Played</div>
+                    <div class="stat-label" data-translate="games-played">Games Played</div>
                 </div>
             </div>
             <div class="sound-controls" style="margin-top: 15px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                 <button class="btn" onclick="toggleSound()" id="sound-btn" style="background: var(--success); font-size: 0.9rem; padding: 8px 12px;">
-                    🔊 Sound On
+                    <span data-translate="sound-on">🔊 Sound On</span>
                 </button>
                 <button class="btn" onclick="toggleMusic()" id="music-btn" style="background: var(--accent); font-size: 0.9rem; padding: 8px 12px;">
-                    🎵 Music On
+                    <span data-translate="music-on">🎵 Music On</span>
                 </button>
                 <button class="btn" onclick="showDifficultySelector()" id="difficulty-btn" style="background: var(--warning); font-size: 0.9rem; padding: 8px 12px;">
-                    🎯 Easy
+                    <span data-translate="difficulty">🎯 Easy</span>
                 </button>
             </div>
         </div>
 
         <!-- Learning Section -->
         <div class="card">
-            <h3>🎓 Learn Anoma Concepts</h3>
-            <p style="color: var(--muted); margin-bottom: 20px;">
+            <h3 data-translate="learn-concepts">🎓 Learn Anoma Concepts</h3>
+            <p data-translate="learn-desc" style="color: var(--muted); margin-bottom: 20px;">
                 Complete lessons to earn points and unlock games. Each lesson teaches you about Anoma's core concepts.
             </p>
             <div class="learning-section">
                 <div class="lesson-card unlocked" onclick="startLesson(1)">
-                    <h4>🌱 What is Anoma?</h4>
-                    <p>Learn the basics of intent-centric blockchain</p>
-                    <div class="cost">Reward: 50 points</div>
+                    <h4 data-translate="lesson1-title">🌱 What is Anoma?</h4>
+                    <p data-translate="lesson1-desc">Learn the basics of intent-centric blockchain</p>
+                    <div class="cost" data-translate="reward-50">Reward: 50 points</div>
                 </div>
                 <div class="lesson-card" onclick="startLesson(2)">
-                    <h4>⚡ Intent System</h4>
-                    <p>Understand how intents work in Anoma</p>
-                    <div class="cost">Reward: 50 points</div>
+                    <h4 data-translate="lesson2-title">⚡ Intent System</h4>
+                    <p data-translate="lesson2-desc">Understand how intents work in Anoma</p>
+                    <div class="cost" data-translate="reward-50">Reward: 50 points</div>
                 </div>
                 <div class="lesson-card" onclick="startLesson(3)">
-                    <h4>🔐 Privacy & ZK</h4>
-                    <p>Learn about zero-knowledge proofs</p>
-                    <div class="cost">Reward: 50 points</div>
+                    <h4 data-translate="lesson3-title">🔐 Privacy & ZK</h4>
+                    <p data-translate="lesson3-desc">Learn about zero-knowledge proofs</p>
+                    <div class="cost" data-translate="reward-50">Reward: 50 points</div>
                 </div>
                 <div class="lesson-card" onclick="startLesson(4)">
-                    <h4>🌐 Cross-Chain</h4>
-                    <p>Understand cross-chain operations</p>
-                    <div class="cost">Reward: 50 points</div>
+                    <h4 data-translate="lesson4-title">🌐 Cross-Chain</h4>
+                    <p data-translate="lesson4-desc">Understand cross-chain operations</p>
+                    <div class="cost" data-translate="reward-50">Reward: 50 points</div>
                 </div>
                 <div class="lesson-card" onclick="startLesson(5)">
-                    <h4>🎯 Advanced Intents</h4>
-                    <p>Master complex intent strategies</p>
-                    <div class="cost">Reward: 50 points</div>
+                    <h4 data-translate="lesson5-title">🎯 Advanced Intents</h4>
+                    <p data-translate="lesson5-desc">Master complex intent strategies</p>
+                    <div class="cost" data-translate="reward-50">Reward: 50 points</div>
                 </div>
                 <div class="lesson-card" onclick="startLesson(6)">
-                    <h4>🏆 Anoma Master</h4>
-                    <p>Become an Anoma expert</p>
-                    <div class="cost">Reward: 100 points</div>
+                    <h4 data-translate="lesson6-title">🏆 Anoma Master</h4>
+                    <p data-translate="lesson6-desc">Become an Anoma expert</p>
+                    <div class="cost" data-translate="reward-100">Reward: 100 points</div>
                 </div>
             </div>
         </div>
 
         <!-- Game Section -->
         <div class="card">
-            <h3>🎮 Play Games with Your Points</h3>
-            <p style="color: var(--muted); margin-bottom: 20px;">
+            <h3 data-translate="play-games">🎮 Play Games with Your Points</h3>
+            <p data-translate="games-desc" style="color: var(--muted); margin-bottom: 20px;">
                 Use your earned points to play games that teach you more about Anoma concepts.
             </p>
             
             <!-- Knowledge Games Category -->
             <div class="game-category">
-                <h4 class="category-title category-knowledge">🧠 Knowledge Games</h4>
+                <h4 class="category-title category-knowledge" data-translate="knowledge-games">🧠 Knowledge Games</h4>
             <div class="game-section">
                 <div class="game-card">
-                    <h4>🧠 Anoma Master Quiz</h4>
-                    <p>Advanced knowledge test with comprehensive Anoma concepts</p>
-                    <div class="cost">Cost: 50 points</div>
-                    <button class="btn" onclick="playAnomaQuiz()">Play Game</button>
+                    <h4 data-translate="anoma-quiz">🧠 Anoma Master Quiz</h4>
+                    <p data-translate="anoma-quiz-desc">Advanced knowledge test with comprehensive Anoma concepts</p>
+                    <div class="cost" data-translate="cost-50">Cost: 50 points</div>
+                    <button class="btn" onclick="playAnomaQuiz()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🎯 Intent Matching Game</h4>
-                    <p>Match intents with their optimal execution paths</p>
-                    <div class="cost">Cost: 20 points</div>
-                    <button class="btn" onclick="playIntentGame()">Play Game</button>
+                    <h4 data-translate="intent-matching">🎯 Intent Matching Game</h4>
+                    <p data-translate="intent-matching-desc">Match intents with their optimal execution paths</p>
+                    <div class="cost" data-translate="cost-20">Cost: 20 points</div>
+                    <button class="btn" onclick="playIntentGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🔍 Intent Detective</h4>
-                    <p>Analyze complex intents and find the best path</p>
-                    <div class="cost">Cost: 35 points</div>
-                    <button class="btn" onclick="playDetectiveGame()">Play Game</button>
+                    <h4 data-translate="intent-detective">🔍 Intent Detective</h4>
+                    <p data-translate="intent-detective-desc">Analyze complex intents and find the best path</p>
+                    <div class="cost" data-translate="cost-35">Cost: 35 points</div>
+                    <button class="btn" onclick="playDetectiveGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>⚡ Speed Intent</h4>
-                    <p>Express intents as fast as possible</p>
-                    <div class="cost">Cost: 25 points</div>
-                    <button class="btn" onclick="playSpeedGame()">Play Game</button>
+                    <h4 data-translate="speed-intent">⚡ Speed Intent</h4>
+                    <p data-translate="speed-intent-desc">Express intents as fast as possible</p>
+                    <div class="cost" data-translate="cost-25">Cost: 25 points</div>
+                    <button class="btn" onclick="playSpeedGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🎲 Intent Dice</h4>
-                    <p>Roll dice to build intent combinations</p>
-                    <div class="cost">Cost: 25 points</div>
-                    <button class="btn" onclick="playDiceGame()">Play Game</button>
+                    <h4 data-translate="intent-dice">🎲 Intent Dice</h4>
+                    <p data-translate="intent-dice-desc">Roll dice to build intent combinations</p>
+                    <div class="cost" data-translate="cost-25">Cost: 25 points</div>
+                    <button class="btn" onclick="playDiceGame()" data-translate="play-game">Play Game</button>
                 </div>
                 </div>
             </div>
 
             <!-- Puzzle & Visual Games Category -->
             <div class="game-category">
-                <h4 class="category-title category-puzzle">🧩 Puzzle & Visual Games</h4>
+                <h4 class="category-title category-puzzle" data-translate="puzzle-games">🧩 Puzzle & Visual Games</h4>
                 <div class="game-section">
                 <div class="game-card">
-                    <h4>🔐 Privacy Puzzle</h4>
-                    <p>Solve puzzles using zero-knowledge concepts</p>
-                    <div class="cost">Cost: 30 points</div>
-                    <button class="btn" onclick="playPrivacyGame()">Play Game</button>
+                    <h4 data-translate="privacy-puzzle">🔐 Privacy Puzzle</h4>
+                    <p data-translate="privacy-puzzle-desc">Solve puzzles using zero-knowledge concepts</p>
+                    <div class="cost" data-translate="cost-30">Cost: 30 points</div>
+                    <button class="btn" onclick="playPrivacyGame()" data-translate="play-game">Play Game</button>
                 </div>
                         <div class="game-card">
-                            <h4>🧩 Privacy Puzzle (Visual)</h4>
-                            <p>Drag and drop ZK proof components</p>
-                    <div class="cost">Cost: 35 points</div>
-                            <button class="btn" onclick="playPuzzleGame()">Play Game</button>
+                            <h4 data-translate="privacy-puzzle-visual">🧩 Privacy Puzzle (Visual)</h4>
+                            <p data-translate="privacy-puzzle-visual-desc">Drag and drop ZK proof components</p>
+                    <div class="cost" data-translate="cost-35">Cost: 35 points</div>
+                            <button class="btn" onclick="playPuzzleGame()" data-translate="play-game">Play Game</button>
                         </div>
                         <div class="game-card">
-                            <h4>🧠 Anoma Memory</h4>
-                            <p>Match Anoma concepts and test your memory</p>
-                            <div class="cost">Cost: 25 points</div>
-                            <button class="btn" onclick="playMemoryGame()">Play Game</button>
+                            <h4 data-translate="anoma-memory">🧠 Anoma Memory</h4>
+                            <p data-translate="anoma-memory-desc">Match Anoma concepts and test your memory</p>
+                            <div class="cost" data-translate="cost-25">Cost: 25 points</div>
+                            <button class="btn" onclick="playMemoryGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🛡️ Privacy Guardian</h4>
-                    <p>Protect user data using ZK proofs</p>
-                    <div class="cost">Cost: 30 points</div>
-                    <button class="btn" onclick="playGuardianGame()">Play Game</button>
+                    <h4 data-translate="privacy-guardian">🛡️ Privacy Guardian</h4>
+                    <p data-translate="privacy-guardian-desc">Protect user data using ZK proofs</p>
+                    <div class="cost" data-translate="cost-30">Cost: 30 points</div>
+                    <button class="btn" onclick="playGuardianGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🎯 Intent Builder</h4>
-                    <p>Create complex multi-step intents</p>
-                    <div class="cost">Cost: 50 points</div>
-                    <button class="btn" onclick="playBuilderGame()">Play Game</button>
+                    <h4 data-translate="intent-builder">🎯 Intent Builder</h4>
+                    <p data-translate="intent-builder-desc">Create complex multi-step intents</p>
+                    <div class="cost" data-translate="cost-50">Cost: 50 points</div>
+                    <button class="btn" onclick="playBuilderGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🎮 Intent Tower Defense</h4>
-                    <p>Defend against attacks using Anoma tools</p>
-                    <div class="cost">Cost: 60 points</div>
-                    <button class="btn" onclick="playTowerDefense()">Play Game</button>
+                    <h4 data-translate="tower-defense">🎮 Intent Tower Defense</h4>
+                    <p data-translate="tower-defense-desc">Defend against attacks using Anoma tools</p>
+                    <div class="cost" data-translate="cost-60">Cost: 60 points</div>
+                    <button class="btn" onclick="playTowerDefense()" data-translate="play-game">Play Game</button>
                 </div>
                 </div>
             </div>
 
             <!-- Action & Arcade Games Category -->
             <div class="game-category">
-                <h4 class="category-title category-action">🎮 Action & Arcade Games</h4>
+                <h4 class="category-title category-action" data-translate="action-games">🎮 Action & Arcade Games</h4>
                 <div class="game-section">
                 <div class="game-card">
-                    <h4>🦐 Shrimp Jump Game</h4>
-                    <p>Control the shrimp to jump and avoid obstacles</p>
-                    <div class="cost">Cost: 30 points</div>
-                    <button class="btn" onclick="playShrimpJumpGame()">Play Game</button>
+                    <h4 data-translate="shrimp-jump">🦐 Shrimp Jump Game</h4>
+                    <p data-translate="shrimp-jump-desc">Control the shrimp to jump and avoid obstacles</p>
+                    <div class="cost" data-translate="cost-30">Cost: 30 points</div>
+                    <button class="btn" onclick="playShrimpJumpGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🦐 Shrimp Collector</h4>
-                    <p>Collect Anoma shrimps in this fun arcade game</p>
-                    <div class="cost">Cost: 20 points</div>
-                    <button class="btn" onclick="playShrimpCollector()">Play Game</button>
+                    <h4 data-translate="shrimp-collector">🦐 Shrimp Collector</h4>
+                    <p data-translate="shrimp-collector-desc">Collect Anoma shrimps in this fun arcade game</p>
+                    <div class="cost" data-translate="cost-20">Cost: 20 points</div>
+                    <button class="btn" onclick="playShrimpCollector()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🧙 Wizard Coin Game</h4>
-                    <p>Control wizard to catch falling coins</p>
-                    <div class="cost">Cost: 20 points</div>
-                    <button class="btn" onclick="playWizardCoinGame()">Play Game</button>
+                    <h4 data-translate="wizard-coin">🧙 Wizard Coin Game</h4>
+                    <p data-translate="wizard-coin-desc">Control wizard to catch falling coins</p>
+                    <div class="cost" data-translate="cost-20">Cost: 20 points</div>
+                    <button class="btn" onclick="playWizardCoinGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🎯 Intent Archery</h4>
-                    <p>Shoot intents at targets with precision</p>
-                    <div class="cost">Cost: 30 points</div>
-                    <button class="btn" onclick="playArcheryGame()">Play Game</button>
+                    <h4 data-translate="intent-archery">🎯 Intent Archery</h4>
+                    <p data-translate="intent-archery-desc">Shoot intents at targets with precision</p>
+                    <div class="cost" data-translate="cost-30">Cost: 30 points</div>
+                    <button class="btn" onclick="playArcheryGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🐍 Intent Snake</h4>
-                    <p>Control the snake to collect Anoma shrimps</p>
-                    <div class="cost">Cost: 25 points</div>
-                    <button class="btn" onclick="playSnakeGame()">Play Game</button>
+                    <h4 data-translate="intent-snake">🐍 Intent Snake</h4>
+                    <p data-translate="intent-snake-desc">Control the snake to collect Anoma shrimps</p>
+                    <div class="cost" data-translate="cost-25">Cost: 25 points</div>
+                    <button class="btn" onclick="playSnakeGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card">
-                    <h4>🧩 Intent Puzzle</h4>
-                    <p>Solve the sliding puzzle to unlock Anoma secrets</p>
-                    <div class="cost">Cost: 35 points</div>
-                    <button class="btn" onclick="playPuzzleGame()">Play Game</button>
+                    <h4 data-translate="anoma-racing">🏎️ Anoma Racing</h4>
+                    <p data-translate="anoma-racing-desc">Race through Anoma's blockchain network and collect tokens</p>
+                    <div class="cost" data-translate="cost-40">Cost: 40 points</div>
+                    <button class="btn" onclick="playRacingGame()" data-translate="play-game">Play Game</button>
+                </div>
+                <div class="game-card">
+                    <h4 data-translate="anoma-tetris">🧩 Anoma Tetris</h4>
+                    <p data-translate="anoma-tetris-desc">Classic Tetris with Anoma-themed blocks and blockchain concepts</p>
+                    <div class="cost" data-translate="cost-30">Cost: 30 points</div>
+                    <button class="btn" onclick="playTetrisGame()" data-translate="play-game">Play Game</button>
                 </div>
                 <div class="game-card coming-soon">
-                    <h4>🎮 More Games Coming Soon!</h4>
-                    <p>Stay tuned for exciting new Anoma games</p>
-                    <div class="cost">Coming Soon</div>
-                    <button class="btn" onclick="playComingSoon()" style="background: var(--muted);">Coming Soon</button>
+                    <h4 data-translate="coming-soon-title">🎮 More Games Coming Soon!</h4>
+                    <p data-translate="coming-soon-desc">Stay tuned for exciting new Anoma games</p>
+                    <div class="cost" data-translate="coming-soon">Coming Soon</div>
+                    <button class="btn" onclick="playComingSoon()" style="background: var(--muted);" data-translate="coming-soon">Coming Soon</button>
                 </div>
                 </div>
             </div>
@@ -901,8 +996,8 @@
 
         <!-- Anoma Brand Section -->
         <div class="card">
-            <h3>⚡ About Anoma</h3>
-            <p style="color: var(--muted); margin-bottom: 20px;">
+            <h3 data-translate="about-anoma">⚡ About Anoma</h3>
+            <p data-translate="about-anoma-desc" style="color: var(--muted); margin-bottom: 20px;">
                 Anoma is the first intent-centric blockchain that enables privacy-preserving cross-chain operations. 
                 Learn more about our revolutionary technology and join the future of Web3!
             </p>
@@ -910,22 +1005,22 @@
                 <div class="feature-item">
                     <div class="feature-icon">🎯</div>
                     <div class="feature-text">
-                        <h4>Intent-Centric</h4>
-                        <p>Express what you want, not how to do it</p>
+                        <h4 data-translate="feature1-title">Intent-Centric</h4>
+                        <p data-translate="feature1-desc">Express what you want, not how to do it</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🔐</div>
                     <div class="feature-text">
-                        <h4>Privacy-First</h4>
-                        <p>Zero-knowledge proofs protect your data</p>
+                        <h4 data-translate="feature2-title">Privacy-First</h4>
+                        <p data-translate="feature2-desc">Zero-knowledge proofs protect your data</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🌐</div>
                     <div class="feature-text">
-                        <h4>Cross-Chain</h4>
-                        <p>Seamless operations across all chains</p>
+                        <h4 data-translate="feature3-title">Cross-Chain</h4>
+                        <p data-translate="feature3-desc">Seamless operations across all chains</p>
                     </div>
                 </div>
             </div>
@@ -933,8 +1028,8 @@
 
         <!-- Anoma Official Links -->
         <div class="card">
-            <h3>⚡ Official Anoma Resources</h3>
-            <p style="color: var(--muted); margin-bottom: 20px;">
+            <h3 data-translate="official-resources">⚡ Official Anoma Resources</h3>
+            <p data-translate="official-resources-desc" style="color: var(--muted); margin-bottom: 20px;">
                 Connect with the Anoma ecosystem and stay updated with the latest developments!
             </p>
             <div class="anoma-resources">
@@ -975,6 +1070,470 @@
     <div id="toast" class="toast"></div>
 
     <script>
+        // Language switching functionality
+        let currentLanguage = 'en'; // Default English
+        
+        // English and Chinese text content
+        const translations = {
+            en: {
+                // Button text
+                'theme-text': 'Dark Mode',
+                'lang-text': '中文',
+                // Main titles
+                'academy-title': '🎓 Welcome to Anoma Academy - Your Gateway to Mastering Intent-Centric Blockchain Technology',
+                'academy-desc': 'Learn, earn points, and play games while discovering the revolutionary world of Anoma\'s privacy-preserving cross-chain operations. From racing through blockchain networks to solving puzzles, our interactive platform makes complex blockchain concepts accessible and fun for everyone.',
+                'interactive-learning': '🎮 Interactive Learning',
+                'gamified-education': '🏆 Gamified Education',
+                'racing-games': '🏎️ Racing Games',
+                'future-ready-skills': '🚀 Future-Ready Skills',
+                // Progress section
+                'your-progress': '📊 Your Progress',
+                'points': 'Points',
+                'level': 'Level',
+                'lessons-completed': 'Lessons',
+                'games-played': 'Games Played',
+                'achievements': 'Achievements',
+                // Learning section
+                'learn-concepts': '🎓 Learn Anoma Concepts',
+                'learn-desc': 'Complete lessons to earn points and unlock games. Each lesson teaches you about Anoma\'s core concepts.',
+                'intent-fundamentals': 'Intent Fundamentals',
+                'intent-desc': 'Learn the basics of intent-centric architecture',
+                'privacy-mechanisms': 'Privacy Mechanisms',
+                'privacy-desc': 'Understand zero-knowledge proofs and privacy',
+                'cross-chain': 'Cross-Chain Operations',
+                'cross-chain-desc': 'Master interoperability concepts',
+                'complete-lesson': 'Complete Lesson',
+                // Control按钮
+                'sound-on': '🔊 Sound On',
+                'music-on': '🎵 Music On',
+                'difficulty': '🎯 Easy',
+                // 课程
+                'lesson1-title': '🌱 What is Anoma?',
+                'lesson1-desc': 'Learn the basics of intent-centric blockchain',
+                'lesson2-title': '⚡ Intent System',
+                'lesson2-desc': 'Understand how intents work in Anoma',
+                'lesson3-title': '🔐 Privacy & ZK',
+                'lesson3-desc': 'Learn about zero-knowledge proofs',
+                'lesson4-title': '🌐 Cross-Chain',
+                'lesson4-desc': 'Understand cross-chain operations',
+                'lesson5-title': '🎯 Advanced Intents',
+                'lesson5-desc': 'Master complex intent strategies',
+                'lesson6-title': '🏆 Anoma Master',
+                'lesson6-desc': 'Become an Anoma expert',
+                'reward-50': 'Reward: 50 points',
+                'reward-100': 'Reward: 100 points',
+                // 游戏分类
+                'knowledge-games': '🧠 Knowledge Games',
+                'action-games': '🏃 Action Games',
+                'puzzle-games': '🧩 Puzzle Games',
+                'strategy-games': '🎲 Strategy Games',
+                // 作者信息
+                'development-team': 'Development Team',
+                // Coming Soon
+                'coming-soon-title': '🎮 More Games Coming Soon!',
+                'coming-soon-desc': 'Stay tuned for exciting new Anoma games',
+                'coming-soon': 'Coming Soon',
+                // About Anoma
+                'about-anoma': '⚡ About Anoma',
+                'about-anoma-desc': 'Anoma is the first intent-centric blockchain that enables privacy-preserving cross-chain operations. Learn more about our revolutionary technology and join the future of Web3!',
+                // Anoma特性
+                'feature1-title': 'Intent-Centric',
+                'feature1-desc': 'Express what you want, not how to do it',
+                'feature2-title': 'Privacy-First',
+                'feature2-desc': 'Zero-knowledge proofs protect your data',
+                'feature3-title': 'Cross-Chain',
+                'feature3-desc': 'Seamless operations across all chains',
+                // 官方资源
+                'official-resources': '⚡ Official Anoma Resources',
+                'official-resources-desc': 'Connect with the Anoma ecosystem and stay updated with the latest developments!',
+                // Games section
+                'play-games': '🎮 Play Games with Your Points',
+                'games-desc': 'Use your earned points to play games that teach you more about Anoma concepts.',
+                'shrimp-jump': '🦐 Shrimp Jump',
+                'shrimp-jump-desc': 'Control the shrimp to jump and avoid obstacles',
+                'shrimp-collector': '🦐 Shrimp Collector',
+                'shrimp-collector-desc': 'Collect Anoma shrimps in this fun arcade game',
+                'wizard-coin': '🧙 Wizard Coin Game',
+                'wizard-coin-desc': 'Control wizard to catch falling coins',
+                'intent-archery': '🎯 Intent Archery',
+                'intent-archery-desc': 'Shoot intents at targets with precision',
+                'intent-snake': '🐍 Intent Snake',
+                'intent-snake-desc': 'Control the snake to collect Anoma shrimps',
+                'anoma-racing': '🏎️ Anoma Racing',
+                'anoma-racing-desc': 'Race through Anoma\'s blockchain network and collect tokens',
+                'cost-40': 'Cost: 40 points',
+                'wizard-coin-desc': 'Catch coins with the wizard\'s magic',
+                'intent-archery': '🎯 Intent Archery',
+                'intent-archery-desc': 'Shoot arrows at moving targets',
+                'privacy-puzzle': '🔐 Privacy Puzzle',
+                'privacy-puzzle-desc': 'Solve puzzles using zero-knowledge concepts',
+                'privacy-puzzle-visual': '🧩 Privacy Puzzle (Visual)',
+                'privacy-puzzle-visual-desc': 'Drag and drop ZK proof components',
+                'anoma-memory': '🧠 Anoma Memory',
+                'anoma-memory-desc': 'Match Anoma concepts and test your memory',
+                'privacy-guardian-desc': 'Protect user data using ZK proofs',
+                'intent-builder': '🎯 Intent Builder',
+                'intent-builder-desc': 'Create complex multi-step intents',
+                'tower-defense': '🎮 Intent Tower Defense',
+                'tower-defense-desc': 'Defend against attacks using Anoma tools',
+                'shrimp-jump-desc': 'Jump over obstacles as a shrimp',
+                'shrimp-collector-desc': 'Collect shrimp in the ocean',
+                'wizard-coin-desc': 'Catch coins as a wizard',
+                'archery-desc': 'Shoot arrows at targets',
+                'snake-desc': 'Control the snake to eat food',
+                'racing-desc': 'Race against other cars',
+                'tetris-desc': 'Stack blocks in Tetris',
+                'cost-20': 'Cost: 20 points',
+                'cost-25': 'Cost: 25 points',
+                'cost-30': 'Cost: 30 points',
+                'cost-35': 'Cost: 35 points',
+                'cost-50': 'Cost: 50 points',
+                'cost-60': 'Cost: 60 points',
+                'privacy-puzzle-desc': 'Solve puzzles using zero-knowledge concepts',
+                'anoma-memory': '🧠 Anoma Memory',
+                'anoma-memory-desc': 'Match Anoma concepts and test your memory',
+                'privacy-guardian': '🛡️ Privacy Guardian',
+                'privacy-guardian-desc': 'Protect user data using ZK proofs',
+                'intent-builder': '🎯 Intent Builder',
+                'intent-builder-desc': 'Create complex multi-step intents',
+                'intent-dice': '🎲 Intent Dice',
+                'intent-dice-desc': 'Roll dice to build intent combinations',
+                'intent-snake': '🐍 Intent Snake',
+                'intent-snake-desc': 'Classic snake game with Anoma shrimps',
+                'intent-tower': '🏰 Intent Tower Defense',
+                'intent-tower-desc': 'Build towers to defend against enemies',
+                'anoma-racing': '🏎️ Anoma Racing',
+                'anoma-racing-desc': 'Race through Anoma\'s blockchain network and collect tokens',
+                'anoma-tetris': '🧩 Anoma Tetris',
+                'anoma-tetris-desc': 'Classic Tetris with Anoma-themed blocks and blockchain concepts',
+                // Knowledge Games
+                'anoma-quiz': '🧠 Anoma Master Quiz',
+                'anoma-quiz-desc': 'Advanced knowledge test with comprehensive Anoma concepts',
+                'intent-matching': '🎯 Intent Matching Game',
+                'intent-matching-desc': 'Match intents with their optimal execution paths',
+                'intent-detective': '🔍 Intent Detective',
+                'intent-detective-desc': 'Analyze complex intents and find the best path',
+                'speed-intent': '⚡ Speed Intent',
+                'speed-intent-desc': 'Express intents as fast as possible',
+                // 费用
+                'cost-20': 'Cost: 20 points',
+                'cost-25': 'Cost: 25 points',
+                'cost-30': 'Cost: 30 points',
+                'cost-35': 'Cost: 35 points',
+                'cost-40': 'Cost: 40 points',
+                'cost-50': 'Cost: 50 points',
+                'cost-60': 'Cost: 60 points',
+                'cost': 'Cost',
+                'points': 'points',
+                'play-game': 'Play Game',
+                // 其他
+                'start-race': 'Start Race',
+                'score': 'Score',
+                'tokens': 'Tokens'
+            },
+            zh: {
+                // Button text
+                'theme-text': '深色模式',
+                'lang-text': 'English',
+                // Main titles
+                'academy-title': '🎓 欢迎来到Anoma学院 - 掌握意图中心区块链技术的门户',
+                'academy-desc': '在学习Anoma革命性的隐私保护跨链操作世界的同时，学习、赚取积分和玩游戏。从在区块链网络中Car到解决谜题，我们的互动平台让复杂的区块链概念变得易于理解和有趣。',
+                'interactive-learning': '🎮 互动学习',
+                'gamified-education': '🏆 游戏化教育',
+                'racing-games': '🏎️ Car游戏',
+                'future-ready-skills': '🚀 面向未来的技能',
+                // Progress section
+                'your-progress': '📊 你的进度',
+                'points': '积分',
+                'level': '等级',
+                'lessons-completed': '课程',
+                'games-played': '已玩游戏',
+                'achievements': '成就',
+                // Learning section
+                'learn-concepts': '🎓 学习Anoma概念',
+                'learn-desc': '完成课程赚取积分并解锁游戏。每个课程都教你Anoma的核心概念。',
+                'intent-fundamentals': '意图基础',
+                'intent-desc': '学习意图中心架构的基础知识',
+                'privacy-mechanisms': '隐私机制',
+                'privacy-desc': '理解Zero-KnowledgeProof和隐私',
+                'cross-chain': '跨链操作',
+                'cross-chain-desc': '掌握互操作性概念',
+                'complete-lesson': '完成课程',
+                // Control按钮
+                'sound-on': '🔊 声音开启',
+                'music-on': '🎵 音乐开启',
+                'difficulty': '🎯 简单',
+                // 课程
+                'lesson1-title': '🌱 什么是Anoma？',
+                'lesson1-desc': '学习意图中心区块链的基础知识',
+                'lesson2-title': '⚡ 意图系统',
+                'lesson2-desc': '理解意图在Anoma中如何工作',
+                'lesson3-title': '🔐 隐私与Zero-Knowledge',
+                'lesson3-desc': '学习Zero-KnowledgeProof',
+                'lesson4-title': '🌐 跨链',
+                'lesson4-desc': '理解跨链操作',
+                'lesson5-title': '🎯 高级意图',
+                'lesson5-desc': '掌握复杂的意图策略',
+                'lesson6-title': '🏆 Anoma大师',
+                'lesson6-desc': '成为Anoma专家',
+                'reward-50': '奖励：50积分',
+                'reward-100': '奖励：100积分',
+                // 游戏分类
+                'knowledge-games': '🧠 知识游戏',
+                'action-games': '🏃 动作游戏',
+                'puzzle-games': '🧩 谜题游戏',
+                'strategy-games': '🎲 策略游戏',
+                // 作者信息
+                'development-team': '开发团队',
+                // Coming Soon
+                'coming-soon-title': '🎮 更多游戏即将推出！',
+                'coming-soon-desc': '敬请期待令人兴奋的新Anoma游戏',
+                'coming-soon': '即将推出',
+                // About Anoma
+                'about-anoma': '⚡ 关于Anoma',
+                'about-anoma-desc': 'Anoma是第一个意图中心的区块链，支持隐私保护的跨链操作。了解更多关于我们革命性技术的信息，加入Web3的未来！',
+                // Anoma特性
+                'feature1-title': '意图中心',
+                'feature1-desc': '表达你想要什么，而不是如何实现',
+                'feature2-title': '隐私优先',
+                'feature2-desc': 'Zero-KnowledgeProof保护你的数据',
+                'feature3-title': '跨链',
+                'feature3-desc': '在所有链上无缝操作',
+                // 官方资源
+                'official-resources': '⚡ Anoma官方资源',
+                'official-resources-desc': '与Anoma生态系统连接，了解最新发展！',
+                // Games section
+                'play-games': '🎮 用你的积分玩游戏',
+                'games-desc': 'Use你赚取的积分来玩游戏，这些游戏会教你更多关于Anoma的概念。',
+                'shrimp-jump': '🦐 虾跳游戏',
+                'shrimp-jump-desc': '帮助Anoma虾跳过Obstacles',
+                'shrimp-collector': '🦐 虾Collect器',
+                'shrimp-collector-desc': '在这个快节奏的游戏中Collect掉落的虾',
+                'wizard-coin': '🧙 Wizard硬币游戏',
+                'wizard-coin-desc': '用Wizard的魔法Catch硬币',
+                'intent-archery': '🎯 意图射箭',
+                'intent-archery-desc': '射击Move目标',
+                'privacy-puzzle': '🔐 隐私谜题',
+                'privacy-puzzle-desc': 'UseZero-Knowledge概念解决谜题',
+                'anoma-memory': '🧠 Anoma记忆',
+                'anoma-memory-desc': '匹配Anoma概念并测试你的记忆力',
+                'privacy-guardian': '🛡️ 隐私守护者',
+                'privacy-guardian-desc': 'UseZKProof保护用户数据',
+                'intent-builder': '🎯 意图构建器',
+                'intent-builder-desc': '创建复杂的多步骤意图',
+                'intent-dice': '🎲 意图骰子',
+                'intent-dice-desc': '掷骰子构建意图组合',
+                'intent-snake': '🐍 意图贪吃蛇',
+                'intent-snake-desc': '经典的贪吃蛇游戏，带有Anoma虾',
+                'intent-tower': '🏰 意图塔防',
+                'intent-tower-desc': '建造塔楼防御敌人',
+                'anoma-racing': '🏎️ AnomaCar',
+                'anoma-racing-desc': '在Anoma的区块链网络中Car并CollectTokens',
+                'anoma-tetris': '🧩 Anoma俄罗斯方块',
+                'anoma-tetris-desc': '经典俄罗斯方块，带有Anoma主题方块和区块链概念',
+                // Knowledge Games
+                'anoma-quiz': '🧠 Anoma大师测验',
+                'anoma-quiz-desc': '包含全面Anoma概念的高级知识测试',
+                'intent-matching': '🎯 意图匹配游戏',
+                'intent-matching-desc': '将意图与其最佳执行路径匹配',
+                'intent-detective': '🔍 意图侦探',
+                'intent-detective-desc': '分析复杂意图并找到最佳路径',
+                'speed-intent': '⚡ 速度意图',
+                'speed-intent-desc': '尽可能快地表达意图',
+                // 费用
+                'cost-20': '费用：20积分',
+                'cost-25': '费用：25积分',
+                'cost-30': '费用：30积分',
+                'cost-35': '费用：35积分',
+                'cost-40': '费用：40积分',
+                'cost-50': '费用：50积分',
+                'cost-60': '费用：60积分',
+                'cost': '费用',
+                'points': '积分',
+                'play-game': '玩游戏',
+                // 其他
+                'start-race': '开始比赛',
+                'score': 'Score',
+                'tokens': 'Tokens'
+            }
+        };
+
+        // 主题切换函数
+        function switchTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (body.classList.contains('dark-theme')) {
+                // 切换到浅色主题
+                body.classList.remove('dark-theme');
+                icon.textContent = '🌙';
+                text.textContent = translations[currentLanguage]['theme-text'];
+            } else {
+                // 切换到深色主题
+                body.classList.add('dark-theme');
+                icon.textContent = '☀️';
+                text.textContent = translations[currentLanguage]['theme-text'];
+            }
+        }
+
+        // 语言切换函数
+        function switchLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
+            
+            // 更新按钮文本
+            const langIcon = document.getElementById('lang-icon');
+            const langText = document.getElementById('lang-text');
+            const themeText = document.getElementById('theme-text');
+            
+            langText.textContent = translations[currentLanguage]['lang-text'];
+            themeText.textContent = translations[currentLanguage]['theme-text'];
+            
+            // 更新页面内容
+            updatePageContent();
+            
+            // 保存语言设置
+            localStorage.setItem('language', currentLanguage);
+        }
+
+        // 更新页面内容
+        function updatePageContent() {
+            const lang = translations[currentLanguage];
+            
+            // 更新所有带有data-translate属性的元素
+            const elementsToTranslate = document.querySelectorAll('[data-translate]');
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (lang[key]) {
+                    element.textContent = lang[key];
+                }
+            });
+            
+            // 更新游戏卡片
+            updateGameCards();
+        }
+
+        // 更新游戏卡片
+        function updateGameCards() {
+            const lang = translations[currentLanguage];
+            const gameCards = document.querySelectorAll('.game-card');
+            
+            gameCards.forEach(card => {
+                const title = card.querySelector('h4');
+                const desc = card.querySelector('p');
+                const cost = card.querySelector('.cost');
+                const button = card.querySelector('.btn');
+                
+                if (title && desc && cost && button) {
+                    const titleText = title.textContent;
+                    
+                    // 根据游戏标题匹配对应的翻译
+                    if (titleText.includes('Shrimp Jump')) {
+                        title.textContent = lang['shrimp-jump'];
+                        desc.textContent = lang['shrimp-jump-desc'];
+                    } else if (titleText.includes('Shrimp Collector')) {
+                        title.textContent = lang['shrimp-collector'];
+                        desc.textContent = lang['shrimp-collector-desc'];
+                    } else if (titleText.includes('Wizard Coin')) {
+                        title.textContent = lang['wizard-coin'];
+                        desc.textContent = lang['wizard-coin-desc'];
+                    } else if (titleText.includes('Intent Archery')) {
+                        title.textContent = lang['intent-archery'];
+                        desc.textContent = lang['intent-archery-desc'];
+                    } else if (titleText.includes('Privacy Puzzle')) {
+                        title.textContent = lang['privacy-puzzle'];
+                        desc.textContent = lang['privacy-puzzle-desc'];
+                    } else if (titleText.includes('Anoma Memory')) {
+                        title.textContent = lang['anoma-memory'];
+                        desc.textContent = lang['anoma-memory-desc'];
+                    } else if (titleText.includes('Privacy Guardian')) {
+                        title.textContent = lang['privacy-guardian'];
+                        desc.textContent = lang['privacy-guardian-desc'];
+                    } else if (titleText.includes('Intent Builder')) {
+                        title.textContent = lang['intent-builder'];
+                        desc.textContent = lang['intent-builder-desc'];
+                    } else if (titleText.includes('Intent Dice')) {
+                        title.textContent = lang['intent-dice'];
+                        desc.textContent = lang['intent-dice-desc'];
+                    } else if (titleText.includes('Intent Snake')) {
+                        title.textContent = lang['intent-snake'];
+                        desc.textContent = lang['intent-snake-desc'];
+                    } else if (titleText.includes('Intent Tower')) {
+                        title.textContent = lang['intent-tower'];
+                        desc.textContent = lang['intent-tower-desc'];
+                    } else if (titleText.includes('Anoma Racing')) {
+                        title.textContent = lang['anoma-racing'];
+                        desc.textContent = lang['anoma-racing-desc'];
+                    }
+                    
+                    // 更新费用和按钮文本
+                    if (cost.textContent.includes('Cost:')) {
+                        cost.textContent = `${lang['cost']}: ${cost.textContent.split(':')[1]}`;
+                    }
+                    button.textContent = lang['play-game'];
+                }
+            });
+        }
+
+        // Theme Management
+        function toggleTheme() {
+            const body = document.body;
+            
+            // Update both buttons
+            const icon1 = document.querySelector('.theme-toggle .icon');
+            const text1 = document.querySelector('.theme-toggle .text');
+            const icon2 = document.getElementById('theme-icon');
+            const text2 = document.getElementById('theme-text');
+            
+            if (body.classList.contains('dark-theme')) {
+                // Switch to light theme
+                body.classList.remove('dark-theme');
+                if (icon1) icon1.textContent = '🌙';
+                if (text1) text1.textContent = 'Dark Mode';
+                if (icon2) icon2.textContent = '🌙';
+                if (text2) text2.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Switch to dark theme
+                body.classList.add('dark-theme');
+                if (icon1) icon1.textContent = '☀️';
+                if (text1) text1.textContent = 'Light Mode';
+                if (icon2) icon2.textContent = '☀️';
+                if (text2) text2.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize theme on page load
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-theme');
+                
+                // Update both buttons
+                const icon1 = document.querySelector('.theme-toggle .icon');
+                const text1 = document.querySelector('.theme-toggle .text');
+                const icon2 = document.getElementById('theme-icon');
+                const text2 = document.getElementById('theme-text');
+                
+                if (icon1) icon1.textContent = '☀️';
+                if (text1) text1.textContent = 'Light Mode';
+                if (icon2) icon2.textContent = '☀️';
+                if (text2) text2.textContent = 'Light Mode';
+            }
+        }
+
+
+        // 页面加载完成
+        document.addEventListener('DOMContentLoaded', function() {
+            // 主题切换功能已就绪
+        });
+
+        // 全局函数
+        window.switchTheme = switchTheme;
+
         // Game State
         let gameState = {
             points: 1000,
@@ -1007,21 +1566,21 @@
             easy: [
                 {
                     question: "Anoma是什么类型的区块链？",
-                    options: ["权益证明", "意图中心化", "工作量证明", "委托权益证明"],
+                    options: ["权益Proof", "意图中心化", "工作量Proof", "委托权益Proof"],
                     correct: 1,
                     explanation: "Anoma是意图中心化的区块链，专注于用户意图的表达和执行"
                 },
                 {
                     question: "在Anoma中，用户如何表达需求？",
-                    options: ["使用复杂的交易代码", "通过意图表达", "发送邮件", "打电话"],
+                    options: ["Use复杂的交易代码", "通过意图表达", "发送邮件", "打电话"],
                     correct: 1,
-                    explanation: "Anoma使用意图系统，用户只需表达想要什么，而不是如何实现"
+                    explanation: "AnomaUse意图系统，用户只需表达想要什么，而不是如何实现"
                 },
                 {
                     question: "Anoma如何保护用户隐私？",
-                    options: ["使用密码", "零知识证明", "隐藏IP地址", "删除数据"],
+                    options: ["Use密码", "Zero-KnowledgeProof", "隐藏IP地址", "删除数据"],
                     correct: 1,
-                    explanation: "Anoma使用零知识证明技术来保护用户隐私"
+                    explanation: "AnomaUseZero-KnowledgeProof技术来保护用户隐私"
                 },
                 {
                     question: "Anoma支持哪些操作？",
@@ -1042,10 +1601,10 @@
                     explanation: "AI系统分析用户意图，找到最优的执行路径"
                 },
                 {
-                    question: "零知识证明的作用是？",
-                    options: ["提高速度", "证明某事而不泄露信息", "降低成本", "增加安全性"],
+                    question: "Zero-KnowledgeProof的作用是？",
+                    options: ["提高速度", "Proof某事而不泄露信息", "降低成本", "增加安全性"],
                     correct: 1,
-                    explanation: "零知识证明允许证明某个陈述为真，而不泄露任何额外信息"
+                    explanation: "Zero-KnowledgeProof允许Proof某个陈述为真，而不泄露任何额外信息"
                 },
                 {
                     question: "Anoma如何处理跨链交易？",
@@ -1060,16 +1619,16 @@
                     explanation: "Arianne Flemming是Anoma的创始人，她提出了意图中心化的区块链设计理念。"
                 },
                 {
-                    question: "Anoma网络的原生代币是什么？",
+                    question: "Anoma网络的原生Tokens是什么？",
                     options: ["ANOMA", "NOM", "ANM", "ANOMA Token"],
                     correct: 1,
-                    explanation: "NOM是Anoma网络的原生代币，用于网络治理和交易费用。"
+                    explanation: "NOM是Anoma网络的原生Tokens，用于网络治理和交易费用。"
                 },
                 {
                     question: "Anoma的主要编程语言是什么？",
                     options: ["Solidity", "Rust", "Go", "Python"],
                     correct: 1,
-                    explanation: "Anoma主要使用Rust语言开发，确保了高性能和内存安全。"
+                    explanation: "Anoma主要UseRust语言开发，确保了高性能和内存安全。"
                 },
                 {
                     question: "Anoma的意图语言叫什么？",
@@ -1087,13 +1646,13 @@
                 },
                 {
                     question: "Anoma的隐私保护机制包括哪些？",
-                    options: ["仅加密", "零知识证明和混淆", "仅匿名", "仅隐藏IP"],
+                    options: ["仅加密", "Zero-KnowledgeProof和混淆", "仅匿名", "仅隐藏IP"],
                     correct: 1,
-                    explanation: "Anoma使用零知识证明和交易混淆来保护隐私"
+                    explanation: "AnomaUseZero-KnowledgeProof和交易混淆来保护隐私"
                 },
                 {
                     question: "意图表达的最佳实践是什么？",
-                    options: ["详细描述步骤", "表达最终目标", "使用技术术语", "避免具体化"],
+                    options: ["详细描述步骤", "表达最终目标", "Use技术术语", "避免具体化"],
                     correct: 1,
                     explanation: "应该表达最终目标，让系统找到最佳实现方式"
                 },
@@ -1113,7 +1672,7 @@
                     question: "Anoma的共识机制是什么？",
                     options: ["PoW", "PoS", "混合共识", "DPoS"],
                     correct: 2,
-                    explanation: "Anoma使用混合共识机制，结合多种共识算法"
+                    explanation: "AnomaUse混合共识机制，结合多种共识算法"
                 },
                 {
                     question: "意图执行失败时会发生什么？",
@@ -1123,9 +1682,9 @@
                 },
                 {
                     question: "Anoma如何确保意图的隐私性？",
-                    options: ["加密存储", "零知识证明", "本地处理", "以上都是"],
+                    options: ["加密存储", "Zero-KnowledgeProof", "本地处理", "以上都是"],
                     correct: 3,
-                    explanation: "Anoma使用多种技术确保意图的隐私性"
+                    explanation: "AnomaUse多种技术确保意图的隐私性"
                 },
                 {
                     question: "Anoma的治理机制是什么？",
@@ -1140,10 +1699,10 @@
                     explanation: "Anoma可以将复杂的多步骤意图分解为多个简单的子意图，然后并行执行。"
                 },
                 {
-                    question: "Anoma的零知识证明系统基于什么？",
+                    question: "Anoma的Zero-KnowledgeProof系统基于什么？",
                     options: ["仅zk-SNARKs", "仅zk-STARKs", "仅Plonk", "多种技术"],
                     correct: 3,
-                    explanation: "Anoma支持多种零知识证明系统，包括zk-SNARKs、zk-STARKs和Plonk等。"
+                    explanation: "Anoma支持多种Zero-KnowledgeProof系统，包括zk-SNARKs、zk-STARKs和Plonk等。"
                 },
                 {
                     question: "Anoma的意图匹配算法基于什么原理？",
@@ -1161,21 +1720,21 @@
                 },
                 {
                     question: "在Anoma中，如何实现隐私保护的跨链套利？",
-                    options: ["不可能", "使用零知识证明隐藏套利策略", "公开进行", "仅限单链"],
+                    options: ["不可能", "UseZero-KnowledgeProof隐藏套利策略", "公开进行", "仅限单链"],
                     correct: 1,
-                    explanation: "可以使用零知识证明来隐藏套利策略，同时保护隐私"
+                    explanation: "可以UseZero-KnowledgeProof来隐藏套利策略，同时保护隐私"
                 },
                 {
                     question: "Anoma的意图匹配算法如何优化？",
-                    options: ["随机匹配", "使用AI和博弈论", "仅按时间", "仅按金额"],
+                    options: ["随机匹配", "UseAI和博弈论", "仅按Time", "仅按金额"],
                     correct: 1,
-                    explanation: "使用AI和博弈论来优化意图匹配，找到最优解"
+                    explanation: "UseAI和博弈论来优化意图匹配，找到最优解"
                 },
                 {
                     question: "Anoma的隐私保护如何与可验证性平衡？",
-                    options: ["牺牲隐私", "牺牲可验证性", "通过零知识证明实现", "通过加密实现"],
+                    options: ["牺牲隐私", "牺牲可验证性", "通过Zero-KnowledgeProof实现", "通过加密实现"],
                     correct: 2,
-                    explanation: "Anoma通过零知识证明技术，在保护用户隐私的同时保持交易的可验证性。"
+                    explanation: "Anoma通过Zero-KnowledgeProof技术，在保护用户隐私的同时保持交易的可验证性。"
                 },
                 {
                     question: "Anoma的意图分解器如何工作？",
@@ -1187,7 +1746,7 @@
                     question: "Anoma如何处理意图冲突？",
                     options: ["忽略冲突", "通过博弈论解决", "随机选择", "用户手动解决"],
                     correct: 1,
-                    explanation: "Anoma使用博弈论机制来解决意图冲突，找到最优的解决方案。"
+                    explanation: "AnomaUse博弈论机制来解决意图冲突，找到最优的解决方案。"
                 },
                 {
                     question: "Anoma的跨链意图如何保证原子性？",
@@ -1197,33 +1756,33 @@
                 },
                 {
                     question: "如何处理意图的原子性执行？",
-                    options: ["忽略", "使用哈希时间锁", "手动确认", "分批执行"],
+                    options: ["忽略", "Use哈希Time锁", "手动确认", "分批执行"],
                     correct: 1,
-                    explanation: "使用哈希时间锁等技术确保意图的原子性执行"
+                    explanation: "Use哈希Time锁等技术确保意图的原子性执行"
                 },
                 {
                     question: "Anoma的隐私保护如何扩展到复杂交易？",
-                    options: ["不支持", "使用递归零知识证明", "仅限简单交易", "手动处理"],
+                    options: ["不支持", "Use递归Zero-KnowledgeProof", "仅限简单交易", "手动处理"],
                     correct: 1,
-                    explanation: "使用递归零知识证明来保护复杂交易的隐私"
+                    explanation: "Use递归Zero-KnowledgeProof来保护复杂交易的隐私"
                 },
                 {
                     question: "意图系统的可扩展性如何保证？",
-                    options: ["增加节点", "使用分片技术", "限制用户", "以上都是"],
+                    options: ["增加节点", "Use分片技术", "限制用户", "以上都是"],
                     correct: 3,
                     explanation: "通过多种技术手段保证意图系统的可扩展性"
                 },
                 {
                     question: "Anoma如何处理意图的优先级和排序？",
-                    options: ["FIFO", "基于费用", "使用拍卖机制", "以上都是"],
+                    options: ["FIFO", "基于费用", "Use拍卖机制", "以上都是"],
                     correct: 3,
-                    explanation: "使用多种机制来处理意图的优先级和排序"
+                    explanation: "Use多种机制来处理意图的优先级和排序"
                 },
                 {
                     question: "在Anoma中，如何实现隐私保护的治理投票？",
-                    options: ["不可能", "使用零知识证明", "公开投票", "委托投票"],
+                    options: ["不可能", "UseZero-KnowledgeProof", "公开投票", "委托投票"],
                     correct: 1,
-                    explanation: "使用零知识证明技术实现隐私保护的治理投票"
+                    explanation: "UseZero-KnowledgeProof技术实现隐私保护的治理投票"
                 }
             ]
         };
@@ -1240,11 +1799,11 @@
             const puzzleTemplates = {
                 easy: [
                     {
-                        title: "ZK证明基础",
-                        description: "排列零知识证明的基本组件",
-                        pieces: ["秘密", "证明", "验证者", "证明者"],
-                        solution: ["证明者", "秘密", "证明", "验证者"],
-                        explanation: "证明者使用秘密创建证明，验证者检查证明的有效性"
+                        title: "ZKProof Basics",
+                        description: "Arrange basic components of Zero-Knowledge proof",
+                        pieces: ["Secret", "Proof", "Verifier", "Proof者"],
+                        solution: ["Proof者", "Secret", "Proof", "Verifier"],
+                        explanation: "Proof者UseSecret创建Proof，Verifier检查Proof的有效性"
                     },
                     {
                         title: "意图流程",
@@ -1258,32 +1817,32 @@
                     {
                         title: "隐私保护机制",
                         description: "排列Anoma的隐私保护组件",
-                        pieces: ["零知识证明", "交易混淆", "意图匹配", "隐私计算"],
-                        solution: ["意图匹配", "零知识证明", "交易混淆", "隐私计算"],
-                        explanation: "意图匹配 → 零知识证明 → 交易混淆 → 隐私计算"
+                        pieces: ["Zero-KnowledgeProof", "交易混淆", "意图匹配", "隐私计算"],
+                        solution: ["意图匹配", "Zero-KnowledgeProof", "交易混淆", "隐私计算"],
+                        explanation: "意图匹配 → Zero-KnowledgeProof → 交易混淆 → 隐私计算"
                     },
                     {
                         title: "跨链隐私",
                         description: "排列跨链隐私保护的步骤",
-                        pieces: ["跨链意图", "隐私证明", "链间验证", "隐私结算"],
-                        solution: ["跨链意图", "隐私证明", "链间验证", "隐私结算"],
-                        explanation: "创建跨链意图 → 生成隐私证明 → 链间验证 → 隐私结算"
+                        pieces: ["跨链意图", "隐私Proof", "链间验证", "隐私结算"],
+                        solution: ["跨链意图", "隐私Proof", "链间验证", "隐私结算"],
+                        explanation: "创建跨链意图 → 生成隐私Proof → 链间验证 → 隐私结算"
                     }
                 ],
                 hard: [
                     {
                         title: "高级隐私架构",
                         description: "排列复杂的隐私保护架构组件",
-                        pieces: ["递归ZK", "隐私聚合", "零知识虚拟机", "隐私状态机", "隐私共识"],
-                        solution: ["隐私状态机", "递归ZK", "零知识虚拟机", "隐私聚合", "隐私共识"],
-                        explanation: "隐私状态机 → 递归ZK → 零知识虚拟机 → 隐私聚合 → 隐私共识"
+                        pieces: ["递归ZK", "隐私聚合", "Zero-Knowledge虚拟机", "隐私状态机", "隐私共识"],
+                        solution: ["隐私状态机", "递归ZK", "Zero-Knowledge虚拟机", "隐私聚合", "隐私共识"],
+                        explanation: "隐私状态机 → 递归ZK → Zero-Knowledge虚拟机 → 隐私聚合 → 隐私共识"
                     },
                     {
                         title: "隐私治理",
                         description: "排列隐私治理的完整流程",
-                        pieces: ["隐私投票", "零知识验证", "治理证明", "隐私结果", "状态更新"],
-                        solution: ["隐私投票", "零知识验证", "治理证明", "隐私结果", "状态更新"],
-                        explanation: "隐私投票 → 零知识验证 → 治理证明 → 隐私结果 → 状态更新"
+                        pieces: ["隐私投票", "Zero-Knowledge验证", "治理Proof", "隐私结果", "状态更新"],
+                        solution: ["隐私投票", "Zero-Knowledge验证", "治理Proof", "隐私结果", "状态更新"],
+                        explanation: "隐私投票 → Zero-Knowledge验证 → 治理Proof → 隐私结果 → 状态更新"
                     }
                 ]
             };
@@ -1682,7 +2241,7 @@
             showLessonModal(lessonNumber);
         }
 
-        // Show lesson modal
+        // Show lesson modal with 10-second learning requirement
         function showLessonModal(lessonNumber) {
             const lessons = {
                 1: {
@@ -1783,6 +2342,10 @@
             const lesson = lessons[lessonNumber];
             if (!lesson) return;
 
+            let timeLeft = 10; // 10 seconds required
+            let canComplete = false;
+            let timerInterval;
+
             const modal = document.createElement('div');
             modal.className = 'modal';
             modal.style.display = 'block';
@@ -1793,17 +2356,71 @@
                     <div style="margin: 20px 0; line-height: 1.8;">
                         ${lesson.content}
                     </div>
+                    <div style="text-align: center; margin: 20px 0; padding: 15px; background: var(--surface); border-radius: 10px; border: 2px solid var(--border);">
+                        <div style="font-size: 1.2rem; margin-bottom: 10px; color: var(--accent);">
+                            ⏰ Learning Time Required: <span id="lesson-timer">${timeLeft}</span> seconds
+                        </div>
+                        <div style="font-size: 0.9rem; color: var(--muted);">
+                            Please read the lesson content carefully. You can complete the lesson after the time is up.
+                        </div>
+                        <div style="width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin-top: 10px; overflow: hidden;">
+                            <div id="progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--success)); border-radius: 4px; transition: width 0.3s ease;"></div>
+                        </div>
+                    </div>
                     <div style="text-align: center; margin-top: 30px;">
-                        <button class="btn" onclick="completeLesson(${lessonNumber})">Complete Lesson</button>
+                        <button id="complete-btn" class="btn" onclick="completeLesson(${lessonNumber})" disabled style="background: var(--muted); cursor: not-allowed; opacity: 0.6;">
+                            Complete Lesson (Need <span id="complete-timer">${timeLeft}</span> more seconds)
+                        </button>
                         <button class="btn" onclick="closeModal()" style="background: var(--muted);">Close</button>
                     </div>
                 </div>
             `;
             document.body.appendChild(modal);
+            
+            // Start timer
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('lesson-timer').textContent = timeLeft;
+                document.getElementById('complete-timer').textContent = timeLeft;
+                
+                // Update progress bar
+                const progress = ((10 - timeLeft) / 10) * 100;
+                document.getElementById('progress-bar').style.width = progress + '%';
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    canComplete = true;
+                    
+                    // Enable complete button
+                    const completeBtn = document.getElementById('complete-btn');
+                    completeBtn.disabled = false;
+                    completeBtn.style.background = 'var(--success)';
+                    completeBtn.style.cursor = 'pointer';
+                    completeBtn.style.opacity = '1';
+                    completeBtn.innerHTML = '✅ Complete Lesson';
+                    
+                    // Update timer display
+                    document.getElementById('lesson-timer').textContent = '0';
+                    document.getElementById('complete-timer').textContent = '0';
+                    
+                    // Show completion message
+                    showToast('🎉 Learning time completed! You can now complete the lesson!', 'success');
+                }
+            }, 1000);
+            
+            // Store timer interval for cleanup
+            modal.timerInterval = timerInterval;
         }
 
         // Complete lesson
         function completeLesson(lessonNumber) {
+            // Check if learning time is complete
+            const completeBtn = document.getElementById('complete-btn');
+            if (completeBtn && completeBtn.disabled) {
+                showToast('⏰ Please complete 10 seconds of learning time first!', 'error');
+                return;
+            }
+            
             if (!gameState.completedLessons.includes(lessonNumber)) {
                 gameState.completedLessons.push(lessonNumber);
                 gameState.lessonsCompleted++;
@@ -1837,7 +2454,7 @@
         }
 
         function showIntentGame() {
-            // 根据当前难度获取随机题目
+            // Get random questions based on current difficulty
             const questions = getRandomQuestions(gameState.difficulty, 5);
             let currentQuestion = 0;
             let score = 0;
@@ -1850,7 +2467,7 @@
                     <button class="close-btn" onclick="closeModal()">&times;</button>
                     <h3>🎯 Intent Matching Game</h3>
                     <div style="text-align: center; margin: 10px 0; color: var(--accent);">
-                        <strong>难度: ${gameState.difficulty.toUpperCase()} | 题目: ${questions.length}题</strong>
+                        <strong>Difficulty: ${gameState.difficulty.toUpperCase()} | Questions: ${questions.length}</strong>
                     </div>
                     <div id="intent-game-content">
                         <div style="text-align: center; margin: 20px 0;">
@@ -1929,7 +2546,7 @@
         }
 
         function showPrivacyGame() {
-            // 根据难度生成不同的谜题
+            // Generate different puzzles based on difficulty
             const puzzles = generatePrivacyPuzzles(gameState.difficulty);
 
             let currentPuzzle = 0;
@@ -1945,7 +2562,7 @@
                     <button class="close-btn" onclick="closeModal()">&times;</button>
                     <h3>🧩 Privacy Puzzle Game</h3>
                     <div style="text-align: center; margin: 10px 0; color: var(--accent);">
-                        <strong>难度: ${gameState.difficulty.toUpperCase()} | 谜题: ${puzzles.length}个</strong>
+                        <strong>Difficulty: ${gameState.difficulty.toUpperCase()} | Puzzles: ${puzzles.length}</strong>
                     </div>
                     <div id="puzzle-game-content">
                         <div style="text-align: center; margin: 20px 0;">
@@ -2089,7 +2706,7 @@
         }
 
         function showCrossChainGame() {
-            // 根据难度生成不同的跨链挑战
+            // Generate different cross-chain challenges based on difficulty
             const bridges = generateCrossChainChallenges(gameState.difficulty);
 
             let currentBridge = 0;
@@ -4286,7 +4903,7 @@
             let jumpHeight = 0;
             let jumpSpeed = 0;
             let gravity = 0.4; // 减少重力，让跳跃更高
-            let jumpPower = 18; // 增加跳跃力度，确保能跳过障碍物
+            let jumpPower = 18; // 增加跳跃力度，确保能跳过Obstacles
 
             function startSimpleRunner() {
                 console.log('Starting Intent Runner game...');
@@ -4315,10 +4932,10 @@
                 obstacleInterval = setInterval(() => {
                     if (!gameRunning) return;
                     spawnObstacle();
-                    if (Math.random() < 0.4) { // 增加收集品生成概率
+                    if (Math.random() < 0.4) { // 增加Collect品生成概率
                         spawnCollectible();
                     }
-                }, 1200); // 更频繁的障碍物生成
+                }, 1200); // 更频繁的Obstacles生成
 
                 soundSystem.playSound('gameStart');
                 showToast('Intent Runner started! Press SPACE to jump!', 'success');
@@ -4329,9 +4946,9 @@
                 obstacle.className = 'obstacle';
                 obstacle.style.position = 'absolute';
                 obstacle.style.right = '-30px';
-                obstacle.style.bottom = '20px'; // 障碍物在地面上
+                obstacle.style.bottom = '20px'; // Obstacles在地面上
                 obstacle.style.width = '30px';
-                obstacle.style.height = '50px'; // 更高的障碍物
+                obstacle.style.height = '50px'; // 更高的Obstacles
                 obstacle.style.background = 'var(--danger)';
                 obstacle.style.borderRadius = '5px';
                 obstacle.style.display = 'flex';
@@ -4346,7 +4963,7 @@
                 obstacles.push({
                     element: obstacle,
                     x: 600,
-                    speed: 4 // 更快的移动速度
+                    speed: 4 // 更快的Move速度
                 });
             }
 
@@ -4355,7 +4972,7 @@
                 collectible.className = 'collectible';
                 collectible.style.position = 'absolute';
                 collectible.style.right = '-30px';
-                collectible.style.bottom = '120px'; // 在空中，需要跳跃才能收集
+                collectible.style.bottom = '120px'; // 在空中，需要跳跃才能Collect
                 collectible.style.width = '25px';
                 collectible.style.height = '25px';
                 collectible.style.background = 'var(--success)';
@@ -4437,7 +5054,7 @@
                     const obstacleWidth = 30;
                     const obstacleHeight = 50;
 
-                    // 简单的碰撞检测：玩家和障碍物重叠就碰撞
+                    // Simple collision detection: player and obstacles overlap
                     if (playerX < obstacleX + obstacleWidth &&
                         playerX + playerWidth > obstacleX &&
                         playerY < obstacleY + obstacleHeight &&
@@ -5513,7 +6130,13 @@
         // Close modal
         function closeModal() {
             const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => modal.remove());
+            modals.forEach(modal => {
+                // Clear timer if it exists
+                if (modal.timerInterval) {
+                    clearInterval(modal.timerInterval);
+                }
+                modal.remove();
+            });
         }
 
 
@@ -5690,21 +6313,21 @@
                     <h3>🦐 大虾跳跃游戏</h3>
                     <div id="shrimp-jump-content">
                         <div style="text-align: center; margin: 20px 0;">
-                            <h4>控制大虾跳跃避开障碍物！</h4>
+                            <h4>Control大虾跳跃AvoidObstacles！</h4>
                             <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-                                <div>时间: <span id="shrimp-time">${timeLeft}</span>s</div>
-                                <div>分数: <span id="shrimp-score">${score}</span></div>
+                                <div>Time: <span id="shrimp-time">${timeLeft}</span>s</div>
+                                <div>Score: <span id="shrimp-score">${score}</span></div>
                             </div>
                             <div id="shrimp-game-area" style="width: 100%; height: 300px; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%); border: 2px solid var(--accent); border-radius: 10px; position: relative; overflow: hidden;">
                                 <div id="shrimp-player" style="position: absolute; bottom: 20px; left: 50px; width: 40px; height: 40px; font-size: 2rem; transition: all 0.3s ease;">🦐</div>
                                 <div id="shrimp-obstacles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
                             </div>
                             <div style="margin: 20px 0;">
-                                <button class="btn" onclick="startShrimpJumpGame()" id="start-shrimp-jump-btn" style="background: var(--success);">开始游戏</button>
-                                <button class="btn" onclick="shrimpJump()" id="shrimp-jump-btn" disabled style="background: var(--accent);">跳跃 (空格)</button>
+                                <button class="btn" onclick="startShrimpJumpGame()" id="start-shrimp-jump-btn" style="background: var(--success);">Start Game</button>
+                                <button class="btn" onclick="shrimpJump()" id="shrimp-jump-btn" disabled style="background: var(--accent);">Jump (Space)</button>
                             </div>
                             <div style="color: var(--muted); font-size: 0.9rem;">
-                                使用空格键或点击跳跃按钮控制大虾避开障碍物！
+                                Use space key or click jump button to control shrimp and avoid obstacles!
                             </div>
                         </div>
                     </div>
@@ -5718,7 +6341,7 @@
                 document.getElementById('start-shrimp-jump-btn').disabled = true;
                 document.getElementById('shrimp-jump-btn').disabled = false;
                 
-                // 重置时间
+                // 重置Time
                 timeLeft = 30;
                 document.getElementById('shrimp-time').textContent = timeLeft;
                 
@@ -5831,19 +6454,19 @@
                 const playerWidth = 40;
                 const playerHeight = 40;
                 
-                // 增加分数（每帧+1分）
+                // 增加Score（每帧+1分）
                 score += 1;
                 document.getElementById('shrimp-score').textContent = score;
                 
                 obstacles.forEach((obstacle, index) => {
-                    // 使用实际的障碍物位置而不是计算位置
+                    // Use实际的Obstacles位置而不是计算位置
                     const obstacleRect = obstacle.element.getBoundingClientRect();
                     const obstacleX = obstacleRect.left - gameAreaRect.left;
                     const obstacleY = obstacleRect.top - gameAreaRect.top;
                     const obstacleWidth = 30;
                     const obstacleHeight = 30;
                     
-                    // 只有当障碍物在玩家附近时才检测碰撞
+                    // 只有当Obstacles在玩家附近时才检测碰撞
                     if (obstacleX < playerX + playerWidth + 20 && 
                         obstacleX + obstacleWidth > playerX - 20) {
                         
@@ -5871,9 +6494,9 @@
                 document.getElementById('shrimp-jump-content').innerHTML = `
                     <div style="text-align: center;">
                         <h3>🎉 游戏结束！</h3>
-                        <div style="font-size: 2rem; margin: 20px 0;">最终分数: ${finalScore}</div>
-                        <div style="font-size: 1.2rem; margin: 20px 0;">获得积分: ${pointsEarned}</div>
-                        <button class="btn" onclick="closeModal()">关闭</button>
+                        <div style="font-size: 2rem; margin: 20px 0;">最终Score: ${finalScore}</div>
+                        <div style="font-size: 1.2rem; margin: 20px 0;">Points Earned: ${pointsEarned}</div>
+                        <button class="btn" onclick="closeModal()">Close</button>
                     </div>
                 `;
             }
@@ -6427,7 +7050,7 @@
                     targetX: mouseX,
                     targetY: mouseY,
                     angle: angle,
-                    speed: 12 // 增加箭头速度
+                    speed: 12 // Increase arrow speed
                 });
                 
                 if (arrowCount <= 0) {
@@ -6442,7 +7065,7 @@
                 target.innerHTML = '🎯';
                 target.style.position = 'absolute';
                 
-                // 确保目标在游戏区域内
+                // Ensure target is within game area
                 const x = Math.random() * (archeryArea.offsetWidth - 60) + 30;
                 const y = Math.random() * (archeryArea.offsetHeight - 60) + 30;
                 
@@ -6474,7 +7097,7 @@
             }
 
             function updateArrows() {
-                // 从后往前遍历，避免删除元素时索引错乱
+                // Traverse from back to front to avoid index confusion when deleting elements
                 for (let index = arrows.length - 1; index >= 0; index--) {
                     const arrow = arrows[index];
                     const dx = arrow.targetX - arrow.x;
@@ -6512,35 +7135,35 @@
             }
 
             function checkCollisions() {
-                // 从后往前遍历，避免删除元素时索引错乱
+                // Traverse from back to front to avoid index confusion when deleting elements
                 for (let arrowIndex = arrows.length - 1; arrowIndex >= 0; arrowIndex--) {
                     const arrow = arrows[arrowIndex];
                     
                     for (let targetIndex = targets.length - 1; targetIndex >= 0; targetIndex--) {
                         const target = targets[targetIndex];
                         
-                        // 计算箭头中心到目标中心的距离
+                        // Calculate distance from arrow center to target center
                         const arrowCenterX = arrow.x;
                         const arrowCenterY = arrow.y;
-                        const targetCenterX = target.x + 15; // 目标宽度的一半
-                        const targetCenterY = target.y + 15; // 目标高度的一半
+                        const targetCenterX = target.x + 15; // Half of target width
+                        const targetCenterY = target.y + 15; // Half of target height
                         
                         const distance = Math.sqrt(
                             Math.pow(arrowCenterX - targetCenterX, 2) + 
                             Math.pow(arrowCenterY - targetCenterY, 2)
                         );
                         
-                        if (distance < 30) { // 增加碰撞检测范围
+                        if (distance < 30) { // Increase collision detection range
                             // Hit!
                             console.log('Target hit! Distance:', distance);
                             
-                            // 移除目标
+                            // Remove target
                             if (target.element && target.element.parentNode) {
                                 target.element.remove();
                             }
                             targets.splice(targetIndex, 1);
                             
-                            // 移除箭头
+                            // Remove arrow
                             if (arrow.element && arrow.element.parentNode) {
                                 arrow.element.remove();
                             }
@@ -6551,10 +7174,10 @@
                             showToast('🎯 Target hit! +10 points', 'success');
                             soundSystem.playSound('success');
                             
-                            // 创建爆炸效果
+                            // Create explosion effect
                             particleSystem.createExplosion(targetCenterX, targetCenterY, 20);
                             
-                            break; // 箭头击中目标后跳出内层循环
+                            break; // Break inner loop after arrow hits target
                         }
                     }
                 }
@@ -6589,7 +7212,7 @@
             let timer = null;
             let gameLoop = null;
             let coinSpawnInterval = null;
-            let wizardX = 200; // 巫师初始位置
+            let wizardX = 200; // Initial wizard position
 
             const modal = document.createElement('div');
             modal.className = 'modal';
@@ -6597,26 +7220,26 @@
             modal.innerHTML = `
                 <div class="modal-content" style="width: 90%; max-width: 800px;">
                     <button class="close-btn" onclick="closeModal()">&times;</button>
-                    <h3>🧙 巫师接金币游戏</h3>
+                    <h3>🧙 Wizard Coin Game</h3>
                     <div id="wizard-coin-content">
                         <div style="text-align: center; margin: 20px 0;">
-                            <h4>控制巫师左右移动接住下落的金币！</h4>
+                            <h4>Control the wizard to catch falling coins!</h4>
                             <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-                                <div>时间: <span id="wizard-time">${timeLeft}</span>s</div>
-                                <div>分数: <span id="wizard-score">${score}</span></div>
-                                <div>金币: <span id="coin-count">0</span></div>
+                                <div>Time: <span id="wizard-time">${timeLeft}</span>s</div>
+                                <div>Score: <span id="wizard-score">${score}</span></div>
+                                <div>Coins: <span id="coin-count">0</span></div>
                             </div>
                             <div id="wizard-game-area" style="width: 100%; height: 400px; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%); border: 2px solid var(--accent); border-radius: 10px; position: relative; overflow: hidden;">
                                 <div id="wizard-player" style="position: absolute; left: ${wizardX}px; bottom: 20px; width: 50px; height: 50px; font-size: 2.5rem; transition: all 0.1s ease;">🧙</div>
                                 <div id="wizard-coins" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
                             </div>
                             <div style="margin: 20px 0;">
-                                <button class="btn" onclick="startWizardCoinGame()" id="start-wizard-btn" style="background: var(--success);">开始游戏</button>
-                                <button class="btn" onclick="moveWizardLeft()" id="wizard-left-btn" disabled style="background: var(--accent);">← 左移</button>
-                                <button class="btn" onclick="moveWizardRight()" id="wizard-right-btn" disabled style="background: var(--accent);">右移 →</button>
+                                <button class="btn" onclick="startWizardCoinGame()" id="start-wizard-btn" style="background: var(--success);">Start Game</button>
+                                <button class="btn" onclick="moveWizardLeft()" id="wizard-left-btn" disabled style="background: var(--accent);">← Left</button>
+                                <button class="btn" onclick="moveWizardRight()" id="wizard-right-btn" disabled style="background: var(--accent);">Right →</button>
                             </div>
                             <div style="color: var(--muted); font-size: 0.9rem;">
-                                使用左右箭头键或点击按钮控制巫师移动接住金币！
+                                Use Left/Right arrow keys or click buttons to control wizard movement and catch coins!
                             </div>
                         </div>
                     </div>
@@ -6631,7 +7254,7 @@
                 coins = [];
                 wizardX = 200;
                 
-                // 重置时间
+                // 重置Time
                 timeLeft = 30;
                 document.getElementById('wizard-time').textContent = timeLeft;
                 
@@ -6677,7 +7300,7 @@
                 document.addEventListener('keydown', handleWizardKeyPress);
                 
                 soundSystem.playSound('gameStart');
-                showToast('巫师接金币游戏开始！使用左右箭头键移动！', 'success');
+                showToast('Wizard Coin Game Started! Use Left/Right arrow keys to move!', 'success');
             };
 
             function handleWizardKeyPress(e) {
@@ -6782,7 +7405,7 @@
                         document.getElementById('coin-count').textContent = Math.floor(score / 10);
                         soundSystem.playSound('collect');
                         particleSystem.createCollectEffect(coinX + coin.width/2, coinY + coin.height/2);
-                        showToast('🪙 金币收集成功！+10分', 'success');
+                        showToast('🪙 CoinsCollect成功！+10分', 'success');
                     }
                 });
             }
@@ -6802,14 +7425,25 @@
                 
                 document.getElementById('wizard-coin-content').innerHTML = `
                     <div style="text-align: center;">
-                        <h3>🎉 巫师接金币游戏结束！</h3>
-                        <div style="font-size: 2rem; margin: 20px 0;">最终分数: ${finalScore}</div>
-                        <div style="font-size: 1.2rem; margin: 20px 0;">收集金币: ${Math.floor(finalScore / 10)} 个</div>
-                        <div style="font-size: 1.2rem; margin: 20px 0;">获得积分: ${pointsEarned}</div>
-                        <button class="btn" onclick="closeModal()">关闭</button>
+                        <h3>🎉 Wizard Coin Game Over!</h3>
+                        <div style="font-size: 2rem; margin: 20px 0;">Final Score: ${finalScore}</div>
+                        <div style="font-size: 1.2rem; margin: 20px 0;">Coins Collected: ${Math.floor(finalScore / 10)}</div>
+                        <div style="font-size: 1.2rem; margin: 20px 0;">Points Earned: ${pointsEarned}</div>
+                        <button class="btn" onclick="closeModal()">Close</button>
                     </div>
                 `;
             }
+        }
+
+        function playRacingGame() {
+            if (gameState.points < 40) {
+                showToast('Not enough points!', 'error');
+                return;
+            }
+            gameState.points -= 40;
+            gameState.gamesPlayed++;
+            updateStats();
+            showRacingGame();
         }
 
         function playComingSoon() {
@@ -6979,8 +7613,8 @@
                         <div style="text-align: center; margin: 20px 0;">
                             <h4>Control the snake to collect Anoma shrimps!</h4>
                             <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-                                <div>分数: <span id="snake-score">${score}</div>
-                                <div>长度: <span id="snake-length">1</span></div>
+                                <div>Score: <span id="snake-score">${score}</div>
+                                <div>Length: <span id="snake-length">1</span></div>
                             </div>
                             <div id="snake-game-area" style="width: 400px; height: 400px; background: #000; border: 2px solid var(--accent); border-radius: 10px; position: relative; margin: 0 auto; display: grid; grid-template-columns: repeat(20, 1fr); grid-template-rows: repeat(20, 1fr);">
                                 <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
@@ -7125,10 +7759,44 @@
             };
         }
 
-        function showPuzzleGame() {
-            let moves = 0;
-            let puzzle = [1, 2, 3, 4, 5, 6, 7, 8, 0]; // 0 represents empty space
+        function playRacingGame() {
+            if (gameState.points < 40) {
+                showToast('Not enough points! Need 40 points to play Racing Game.', 'error');
+                return;
+            }
+            
+            gameState.points -= 40;
+            gameState.gamesPlayed++;
+            updateStats();
+            showRacingGame();
+        }
+
+        // 俄罗斯方块游戏
+        function playTetrisGame() {
+            if (gameState.points < 30) {
+                showToast('Not enough points! Need 30 points to play Tetris.', 'error');
+                return;
+            }
+            
+            gameState.points -= 30;
+            gameState.gamesPlayed++;
+            updateStats();
+            showTetrisGame();
+        }
+
+        function showTetrisGame() {
+            let score = 0;
             let gameRunning = false;
+            let gameLoop;
+            let board = [];
+            let currentPiece = null;
+            let pieceX = 0;
+            let pieceY = 0;
+            
+            // 初始化游戏板
+            for (let i = 0; i < 200; i++) {
+                board[i] = 0;
+            }
 
             const modal = document.createElement('div');
             modal.className = 'modal';
@@ -7136,40 +7804,272 @@
             modal.innerHTML = `
                 <div class="modal-content" style="width: 90%; max-width: 500px;">
                     <button class="close-btn" onclick="closeModal()">&times;</button>
-                    <h3>🧩 Intent Puzzle Game</h3>
-                    <div id="puzzle-game-content">
+                    <h3>🧩 Anoma Tetris</h3>
+                    <div id="tetris-game-content">
                         <div style="text-align: center; margin: 20px 0;">
-                            <h4>Solve the sliding puzzle to unlock Anoma secrets!</h4>
+                            <h4>Classic Tetris with Anoma-themed blocks!</h4>
                             <p style="color: var(--muted); margin: 10px 0; font-size: 0.9rem;">
-                                目标：将数字1-8按顺序排列，空位在右下角
+                                UseArrow KeysControl方块，空格键旋转，下键快速下降！
                             </p>
                             <div style="margin: 20px 0;">
-                                <div>移动次数: <span id="puzzle-moves">${moves}</span></div>
+                                <div>Score: <span id="tetris-score">${score}</div>
                             </div>
-                            <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin: 20px 0;">
-                                <div>
-                                    <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 5px;">目标状态：</div>
-                                    <div id="target-puzzle" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; width: 120px; height: 120px; background: #333; padding: 5px; border-radius: 5px;">
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">1</div>
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">2</div>
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">3</div>
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">4</div>
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">5</div>
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">6</div>
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">7</div>
-                                        <div style="background: linear-gradient(135deg, #00d4ff, #10b981); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border-radius: 2px;">8</div>
-                                        <div style="background: #555; border-radius: 2px;"></div>
+                            <div id="tetris-board" style="width: 200px; height: 400px; background: #1a1a1a; border: 2px solid var(--accent); border-radius: 10px; position: relative; margin: 0 auto; display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; padding: 5px;"></div>
+                            <div style="margin: 20px 0;">
+                                <button class="btn" onclick="startTetrisGame()">Start Game</button>
                                     </div>
                                 </div>
-                                <div>
-                                    <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 5px;">当前状态：</div>
-                                    <div id="puzzle-board" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; width: 300px; height: 300px; background: #333; padding: 10px; border-radius: 10px;">
                                     </div>
                                 </div>
+            `;
+            document.body.appendChild(modal);
+
+            window.startTetrisGame = function() {
+                gameRunning = true;
+                score = 0;
+                
+                document.getElementById('tetris-score').textContent = score;
+                
+                // 添加键盘Control
+                const keyHandler = function(e) {
+                    if (!gameRunning) return;
+                    
+                    switch(e.key) {
+                        case 'ArrowLeft':
+                            if (canMovePiece(-1, 0)) pieceX--;
+                            break;
+                        case 'ArrowRight':
+                            if (canMovePiece(1, 0)) pieceX++;
+                            break;
+                        case 'ArrowDown':
+                            if (canMovePiece(0, 1)) pieceY++;
+                            break;
+                        case ' ':
+                            e.preventDefault();
+                            rotatePiece();
+                            break;
+                    }
+                    drawBoard();
+                };
+                
+                document.addEventListener('keydown', keyHandler);
+                
+                // 生成第一个方块
+                spawnNewPiece();
+                drawBoard();
+                
+                // 游戏循环
+                gameLoop = setInterval(() => {
+                    if (!gameRunning) return;
+                    
+                    if (canMovePiece(0, 1)) {
+                        pieceY++;
+                    } else {
+                        // 方块落地，固定到板上
+                        placePiece();
+                        clearLines();
+                        spawnNewPiece();
+                        
+                        if (!canMovePiece(0, 0)) {
+                            endTetrisGame();
+                            return;
+                        }
+                    }
+                    
+                    drawBoard();
+                }, 500);
+            };
+
+            function spawnNewPiece() {
+                const pieces = [
+                    { shape: [[1,1,1,1]], color: '#00d4ff' }, // I
+                    { shape: [[1,1],[1,1]], color: '#10b981' }, // O
+                    { shape: [[1,1,1],[0,1,0]], color: '#f59e0b' }, // T
+                    { shape: [[1,1,1],[1,0,0]], color: '#ef4444' }, // L
+                    { shape: [[1,1,1],[0,0,1]], color: '#8b5cf6' }, // J
+                    { shape: [[0,1,1],[1,1,0]], color: '#ec4899' }, // S
+                    { shape: [[1,1,0],[0,1,1]], color: '#06b6d4' }  // Z
+                ];
+                
+                currentPiece = pieces[Math.floor(Math.random() * pieces.length)];
+                pieceX = 4;
+                pieceY = 0;
+            }
+
+            function canMovePiece(dx, dy) {
+                if (!currentPiece) return false;
+                
+                for (let y = 0; y < currentPiece.shape.length; y++) {
+                    for (let x = 0; x < currentPiece.shape[y].length; x++) {
+                        if (currentPiece.shape[y][x]) {
+                            const newX = pieceX + x + dx;
+                            const newY = pieceY + y + dy;
+                            
+                            if (newX < 0 || newX >= 10 || newY >= 20) return false;
+                            if (newY >= 0 && board[newY * 10 + newX]) return false;
+                        }
+                    }
+                }
+                return true;
+            }
+
+            function placePiece() {
+                if (!currentPiece) return;
+                
+                for (let y = 0; y < currentPiece.shape.length; y++) {
+                    for (let x = 0; x < currentPiece.shape[y].length; x++) {
+                        if (currentPiece.shape[y][x]) {
+                            const boardX = pieceX + x;
+                            const boardY = pieceY + y;
+                            if (boardY >= 0) {
+                                board[boardY * 10 + boardX] = currentPiece.color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            function clearLines() {
+                let linesCleared = 0;
+                
+                for (let y = 19; y >= 0; y--) {
+                    let isFull = true;
+                    for (let x = 0; x < 10; x++) {
+                        if (!board[y * 10 + x]) {
+                            isFull = false;
+                            break;
+                        }
+                    }
+                    
+                    if (isFull) {
+                        linesCleared++;
+                        for (let moveY = y; moveY > 0; moveY--) {
+                            for (let x = 0; x < 10; x++) {
+                                board[moveY * 10 + x] = board[(moveY - 1) * 10 + x];
+                            }
+                        }
+                        for (let x = 0; x < 10; x++) {
+                            board[x] = 0;
+                        }
+                        y++; // Re-check this row
+                    }
+                }
+                
+                if (linesCleared > 0) {
+                    score += linesCleared * 100;
+                    document.getElementById('tetris-score').textContent = score;
+                }
+            }
+
+            function rotatePiece() {
+                if (!currentPiece) return;
+                
+                const rotated = [];
+                const rows = currentPiece.shape.length;
+                const cols = currentPiece.shape[0].length;
+                
+                for (let i = 0; i < cols; i++) {
+                    rotated[i] = [];
+                    for (let j = 0; j < rows; j++) {
+                        rotated[i][j] = currentPiece.shape[rows - 1 - j][i];
+                    }
+                }
+                
+                const originalShape = currentPiece.shape;
+                currentPiece.shape = rotated;
+                
+                if (!canMovePiece(0, 0)) {
+                    currentPiece.shape = originalShape;
+                }
+            }
+
+            function drawBoard() {
+                const boardElement = document.getElementById('tetris-board');
+                boardElement.innerHTML = '';
+                
+                // Draw background
+                for (let i = 0; i < 200; i++) {
+                    const cell = document.createElement('div');
+                    cell.style.background = board[i] || '#333';
+                    cell.style.border = '1px solid #555';
+                    cell.style.borderRadius = '2px';
+                    boardElement.appendChild(cell);
+                }
+                
+                // Draw current piece
+                if (currentPiece) {
+                    for (let y = 0; y < currentPiece.shape.length; y++) {
+                        for (let x = 0; x < currentPiece.shape[y].length; x++) {
+                            if (currentPiece.shape[y][x]) {
+                                const cellIndex = (pieceY + y) * 10 + (pieceX + x);
+                                if (cellIndex >= 0 && cellIndex < 200) {
+                                    const cell = boardElement.children[cellIndex];
+                                    if (cell) {
+                                        cell.style.background = currentPiece.color;
+                                        cell.style.border = '2px solid #fff';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            function endTetrisGame() {
+                gameRunning = false;
+                if (gameLoop) clearInterval(gameLoop);
+                
+                const pointsEarned = Math.floor(score / 50);
+                gameState.points += pointsEarned;
+                updateStats();
+                
+                document.getElementById('tetris-game-content').innerHTML = `
+                    <div style="text-align: center;">
+                        <h3>🎮 Tetris Game Over!</h3>
+                        <div style="font-size: 2rem; margin: 20px 0;">Final Score: ${score}</div>
+                        <div style="font-size: 1.2rem; margin: 20px 0;">Points Earned: ${pointsEarned}</div>
+                        <button class="btn" onclick="closeModal()">Close</button>
+                            </div>
+                `;
+            }
+        }
+
+        function showRacingGame() {
+            let score = 0;
+            let gameRunning = false;
+            let carX = 200;
+            let carY = 300;
+            let obstacles = [];
+            let tokens = [];
+            let gameLoop;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'block';
+            modal.innerHTML = `
+                <div class="modal-content" style="width: 90%; max-width: 600px;">
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                    <h3>🏎️ Anoma Racing Game</h3>
+                    <div id="racing-game-content">
+                        <div style="text-align: center; margin: 20px 0;">
+                            <h4>Race through Anoma's blockchain network and collect tokens!</h4>
+                            <p style="color: var(--muted); margin: 10px 0; font-size: 0.9rem;">
+                                Use arrow keys to control the car, avoid obstacles, and collect tokens!
+                            </p>
+                            <div style="margin: 20px 0;">
+                                <div>Score: <span id="racing-score">${score}</span></div>
+                                <div>Tokens: <span id="token-count">0</span></div>
+                            </div>
+                            <div id="racing-track" style="width: 500px; height: 400px; background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%); border: 3px solid var(--accent); border-radius: 10px; position: relative; margin: 0 auto; overflow: hidden;">
+                                <div id="racing-car" style="position: absolute; width: 50px; height: 30px; background: linear-gradient(135deg, #00d4ff, #10b981); border-radius: 8px; left: ${carX}px; top: ${carY}px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.3); position: relative;">
+                                    <div style="position: absolute; top: -5px; left: 50%; transform: translateX(-50%); font-size: 0.8rem;">🧙‍♂️</div>
+                                    <div style="font-size: 1rem;">🚗</div>
+                        </div>
+                                <div id="racing-obstacles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+                                <div id="racing-tokens" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
                             </div>
                             <div style="margin: 20px 0;">
-                                <button class="btn" onclick="startPuzzleGame()" style="margin-right: 10px;">Start Game</button>
-                                <button class="btn" onclick="shufflePuzzle()" style="background: var(--warning);">Shuffle</button>
+                                <button class="btn" onclick="startRacingGame()">Start Race</button>
                             </div>
                         </div>
                     </div>
@@ -7177,21 +8077,153 @@
             `;
             document.body.appendChild(modal);
 
-            window.startPuzzleGame = function() {
+            window.startRacingGame = function() {
                 gameRunning = true;
-                drawPuzzle();
+                score = 0;
+                carX = 200;
+                carY = 300;
+                obstacles = [];
+                tokens = [];
+                
+                document.getElementById('racing-score').textContent = score;
+                document.getElementById('token-count').textContent = 0;
+                
+                // Add keyboard controls
+                const keyHandler = function(e) {
+                    if (!gameRunning) return;
+                    
+                    switch(e.key) {
+                        case 'ArrowUp':
+                            carY = Math.max(50, carY - 20);
+                            break;
+                        case 'ArrowDown':
+                            carY = Math.min(350, carY + 20);
+                            break;
+                        case 'ArrowLeft':
+                            carX = Math.max(50, carX - 20);
+                            break;
+                        case 'ArrowRight':
+                            carX = Math.min(410, carX + 20);
+                            break;
+                    }
+                    
+                    document.getElementById('racing-car').style.left = carX + 'px';
+                    document.getElementById('racing-car').style.top = carY + 'px';
+                };
+                
+                document.addEventListener('keydown', keyHandler);
+                
+                // Game loop
+                gameLoop = setInterval(() => {
+                    if (!gameRunning) return;
+                    
+                    // Generate obstacles
+                    if (Math.random() < 0.02) {
+                        const obstacle = document.createElement('div');
+                        obstacle.style.position = 'absolute';
+                        obstacle.style.left = '500px';
+                        obstacle.style.top = Math.random() * 300 + 'px';
+                        obstacle.style.width = '30px';
+                        obstacle.style.height = '30px';
+                        obstacle.style.background = 'var(--danger)';
+                        obstacle.style.borderRadius = '50%';
+                        obstacle.style.display = 'flex';
+                        obstacle.style.alignItems = 'center';
+                        obstacle.style.justifyContent = 'center';
+                        obstacle.style.fontSize = '1.2rem';
+                        obstacle.textContent = '🪨';
+                        
+                        document.getElementById('racing-obstacles').appendChild(obstacle);
+                        obstacles.push({
+                            element: obstacle,
+                            x: 500,
+                            y: parseInt(obstacle.style.top)
+                        });
+                    }
+                    
+                    // Generate tokens
+                    if (Math.random() < 0.03) {
+                        const token = document.createElement('div');
+                        token.style.position = 'absolute';
+                        token.style.left = '500px';
+                        token.style.top = Math.random() * 300 + 'px';
+                        token.style.width = '25px';
+                        token.style.height = '25px';
+                        token.style.background = 'var(--warning)';
+                        token.style.borderRadius = '50%';
+                        token.style.display = 'flex';
+                        token.style.alignItems = 'center';
+                        token.style.justifyContent = 'center';
+                        token.style.fontSize = '1rem';
+                        token.textContent = '🪙';
+                        
+                        document.getElementById('racing-tokens').appendChild(token);
+                        tokens.push({
+                            element: token,
+                            x: 500,
+                            y: parseInt(token.style.top)
+                        });
+                    }
+                    
+                    // Move obstacles and tokens
+                    obstacles.forEach((obstacle, index) => {
+                        obstacle.x -= 3;
+                        obstacle.element.style.left = obstacle.x + 'px';
+                        
+                        if (obstacle.x < -50) {
+                            obstacle.element.remove();
+                            obstacles.splice(index, 1);
+                        }
+                        
+                        // Check collision
+                        if (Math.abs(carX - obstacle.x) < 30 && Math.abs(carY - obstacle.y) < 30) {
+                            endRacingGame();
+                        }
+                    });
+                    
+                    tokens.forEach((token, index) => {
+                        token.x -= 2;
+                        token.element.style.left = token.x + 'px';
+                        
+                        if (token.x < -50) {
+                            token.element.remove();
+                            tokens.splice(index, 1);
+                        }
+                        
+                        // Check collection
+                        if (Math.abs(carX - token.x) < 25 && Math.abs(carY - token.y) < 25) {
+                            token.element.remove();
+                            tokens.splice(index, 1);
+                            score += 10;
+                            document.getElementById('racing-score').textContent = score;
+                            document.getElementById('token-count').textContent = Math.floor(score / 10);
+                        }
+                    });
+                    
+                    score += 1;
+                    document.getElementById('racing-score').textContent = score;
+                    
+                }, 50);
             };
 
-            window.shufflePuzzle = function() {
-                // Shuffle the puzzle
-                for (let i = puzzle.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [puzzle[i], puzzle[j]] = [puzzle[j], puzzle[i]];
-                }
-                moves = 0;
-                document.getElementById('puzzle-moves').textContent = moves;
-                drawPuzzle();
-            };
+            function endRacingGame() {
+                gameRunning = false;
+                if (gameLoop) clearInterval(gameLoop);
+                
+                const pointsEarned = Math.floor(score / 10);
+                gameState.points += pointsEarned;
+                updateStats();
+                
+                document.getElementById('racing-game-content').innerHTML = `
+                    <div style="text-align: center;">
+                        <h3>🏁 Racing Game Over!</h3>
+                        <div style="font-size: 2rem; margin: 20px 0;">Final Score: ${score}</div>
+                        <div style="font-size: 1.2rem; margin: 20px 0;">Tokens Collected: ${Math.floor(score / 10)}</div>
+                        <div style="font-size: 1.2rem; margin: 20px 0;">Points Earned: ${pointsEarned}</div>
+                        <button class="btn" onclick="closeModal()">Close</button>
+                    </div>
+                `;
+            }
 
             function drawPuzzle() {
                 const board = document.getElementById('puzzle-board');
@@ -7222,19 +8254,21 @@
                 if (!gameRunning) return;
                 
                 const emptyIndex = puzzle.indexOf(0);
-                const row = Math.floor(index / 3);
-                const col = index % 3;
-                const emptyRow = Math.floor(emptyIndex / 3);
-                const emptyCol = emptyIndex % 3;
+                const row = Math.floor(index / 4);
+                const col = index % 4;
+                const emptyRow = Math.floor(emptyIndex / 4);
+                const emptyCol = emptyIndex % 4;
                 
-                // Check if the piece is adjacent to empty space
-                if ((Math.abs(row - emptyRow) === 1 && col === emptyCol) || 
+                // Check if the clicked piece is adjacent to the empty space
+                if ((Math.abs(row - emptyRow) === 1 && col === emptyCol) ||
                     (Math.abs(col - emptyCol) === 1 && row === emptyRow)) {
                     
+                    // Swap the pieces
                     [puzzle[index], puzzle[emptyIndex]] = [puzzle[emptyIndex], puzzle[index]];
                     moves++;
-                    document.getElementById('puzzle-moves').textContent = moves;
-                    drawPuzzle();
+                document.getElementById('puzzle-moves').textContent = moves;
+                    
+                drawPuzzle();
                     
                     // Check if puzzle is solved
                     if (isSolved()) {
@@ -7270,11 +8304,29 @@
             // Initialize with shuffled puzzle
             shufflePuzzle();
         }
+
+        // Page initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load language settings from local storage
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // Initialize language
+            updatePageContent();
+            
+            // Update button text
+            const langText = document.getElementById('lang-text');
+            const themeText = document.getElementById('theme-text');
+            if (langText) langText.textContent = translations[currentLanguage]['lang-text'];
+            if (themeText) themeText.textContent = translations[currentLanguage]['theme-text'];
+        });
     </script>
     
     <!-- Author Information -->
     <div class="author-info">
-        <h3>Development Team</h3>
+        <h3 data-translate="development-team">Development Team</h3>
         <div class="author-links">
             <a href="https://twitter.com/251262871Com" target="_blank" class="author-btn">🐦 Twitter: @251262871Com</a>
             <a href="https://twitter.com/Kivendeen_eth" target="_blank" class="author-btn">🐦 Twitter: @Kivendeen_eth</a>
@@ -7284,4 +8336,3 @@
     </div>
 </body>
 </html>
-
