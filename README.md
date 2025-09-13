@@ -50,7 +50,7 @@ Anoma Academy is an innovative Web3 educational gaming platform that helps users
 - **Developer 2**: [@Kivendeen_eth](https://twitter.com/Kivendeen_eth)
 
 ## 📱 Social Media
-- **Anoma Official**: [@anomanetwork](https://twitter.com/anomanetwork)
+- **Anoma Official**: [@anoma](https://twitter.com/anoma)
 - **Website**: [anoma.network](https://anoma.network)
 
 ## 🚀 Get Started
