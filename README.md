@@ -39,7 +39,7 @@ Anoma Academy is an innovative educational platform that combines gamification w
 
 ## 🚀 Live Demo
 
-Experience the platform: [Anoma Academy Demo](https://anoma-academy-demo.netlify.app)
+Experience the platform: [Anoma Academy Demo](https://xudan168.github.io/anoma-academy/)
 
 ## 🛠️ Technology Stack
 
@@ -99,7 +99,7 @@ Experience the platform: [Anoma Academy Demo](https://anoma-academy-demo.netlify
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/anoma-academy.git
+   git clone https://github.com/xudan168/anoma-academy.git
    cd anoma-academy
    ```
 
@@ -150,11 +150,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Open Source Community** for inspiration and tools
 - **Contributors** who help improve the platform
 
+## 👥 开发团队
+
+**法师开发团队 (Mage Development Team)**
+
+- **推特 (Twitter):** [@251262871Com](https://twitter.com/251262871Com) 和 [@Kivendeen_eth](https://twitter.com/Kivendeen_eth)
+- **Discord:** More2591 和 luxurious.m
+- **GitHub:** [xudan168](https://github.com/xudan168)
+
 ## 📞 Contact
 
-- **Project Link**: [https://github.com/your-username/anoma-academy](https://github.com/your-username/anoma-academy)
-- **Live Demo**: [https://anoma-academy-demo.netlify.app](https://anoma-academy-demo.netlify.app)
-- **Documentation**: [https://docs.anoma.network](https://docs.anoma.network)
+- **Project Link**: [https://github.com/xudan168/anoma-academy](https://github.com/xudan168/anoma-academy)
+- **Live Demo**: [https://xudan168.github.io/anoma-academy/](https://xudan168.github.io/anoma-academy/)
+- **Anoma Official**: [https://anoma.network](https://anoma.network)
 
 ## 🎯 Roadmap
 
@@ -169,6 +177,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ for the Anoma Community**
 
-[⭐ Star this repo](https://github.com/your-username/anoma-academy) | [🐛 Report Bug](https://github.com/your-username/anoma-academy/issues) | [💡 Request Feature](https://github.com/your-username/anoma-academy/issues)
+[⭐ Star this repo](https://github.com/xudan168/anoma-academy) | [🐛 Report Bug](https://github.com/xudan168/anoma-academy/issues) | [💡 Request Feature](https://github.com/xudan168/anoma-academy/issues)
 
 </div>
