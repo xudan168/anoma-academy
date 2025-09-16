@@ -63,6 +63,210 @@
             padding: 20px;
         }
 
+        /* Login System Styles */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-form {
+            background: var(--surface);
+            border: 2px solid var(--anoma-primary);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .login-form h3 {
+            color: var(--anoma-primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            margin: 10px 0;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--anoma-primary);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .user-profile {
+            background: var(--surface);
+            border: 2px solid var(--anoma-secondary);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .user-profile h4 {
+            color: var(--anoma-secondary);
+            margin-bottom: 15px;
+        }
+
+        .user-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .user-stat {
+            background: var(--bg);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .user-stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--anoma-primary);
+        }
+
+        .user-stat-label {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .demo-button {
+            background: var(--anoma-gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+
+        /* Mobile Responsive Optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                margin-bottom: 15px;
+                padding: 15px;
+            }
+            
+            .game-section {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .game-card {
+                padding: 15px;
+            }
+            
+            .user-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .requirements-content {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-day {
+                margin-bottom: 10px;
+            }
+            
+            .mascot-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .anoma-badges {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .badge {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.5rem;
+            }
+            
+            .card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .game-card h4 {
+                font-size: 1rem;
+            }
+            
+            .user-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .requirements-content {
+                padding: 15px;
+            }
+            
+            .demo-button {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+                margin: 5px;
+            }
+        }
+
         /* Theme toggle button */
         .theme-toggle {
             position: fixed;
@@ -562,6 +766,41 @@
         .animated-shake { animation: shake 0.5s ease-in-out; }
         .animated-rainbow { animation: rainbow 3s linear infinite; }
 
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--anoma-primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-content h3 {
+            margin-bottom: 20px;
+            color: var(--anoma-primary);
+        }
+
         .game-card:hover {
             animation: pulse 0.6s ease-in-out;
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
@@ -729,6 +968,21 @@
     </style>
 </head>
 <body>
+        <!-- Login Modal -->
+        <div id="login-modal" class="login-modal" style="display: none;">
+            <div class="login-form">
+                <h3 data-translate="welcome">🎮 Welcome to Anoma Academy</h3>
+                <p data-translate="login-desc">Create an account to save your progress and compete with other players!</p>
+                
+                <input type="text" id="username-input" class="login-input" data-translate="username" placeholder="Enter username">
+                <input type="email" id="email-input" class="login-input" data-translate="email" placeholder="Enter email (optional)">
+                
+                <div style="margin-top: 20px;">
+                    <button class="demo-button" onclick="login()" data-translate="login-register">Login / Register</button>
+                    <button class="demo-button" onclick="guestLogin()" data-translate="guest-mode" style="background: var(--muted);">Guest Mode</button>
+                </div>
+            </div>
+        </div>
     <!-- Theme Toggle Button (Hidden) -->
     <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" style="display: none;">
         <span class="icon">🌙</span>
@@ -747,6 +1001,15 @@
         <span id="lang-text">中文</span>
     </button>
     
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <h3>🎓 Anoma Academy</h3>
+            <div class="loading-spinner"></div>
+            <p style="margin-top: 20px;">Loading your learning experience...</p>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Header -->
         <div class="header">
@@ -846,6 +1109,61 @@
                     <h4 data-translate="lesson6-title">🏆 Anoma Master</h4>
                     <p data-translate="lesson6-desc">Become an Anoma expert</p>
                     <div class="cost" data-translate="reward-100">Reward: 100 points</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Profile -->
+        <div id="user-profile" class="user-profile" style="display: none;">
+            <h4><span data-translate="welcome-user">Welcome, </span><span id="user-name">Player</span>!</h4>
+            <p data-translate="progress-saved">Your progress is automatically saved to your account.</p>
+            
+            <div class="user-stats">
+                <div class="user-stat">
+                    <div class="user-stat-value" id="user-points">0</div>
+                    <div class="user-stat-label" data-translate="total-points">Total Points</div>
+                </div>
+                <div class="user-stat">
+                    <div class="user-stat-value" id="user-level">1</div>
+                    <div class="user-stat-label" data-translate="level">Level</div>
+                </div>
+                <div class="user-stat">
+                    <div class="user-stat-value" id="user-games">0</div>
+                    <div class="user-stat-label" data-translate="games-played">Games Played</div>
+                </div>
+                <div class="user-stat">
+                    <div class="user-stat-value" id="user-wins">0</div>
+                    <div class="user-stat-label" data-translate="wins">Wins</div>
+                </div>
+            </div>
+            <div style="margin-top: 15px;">
+                <button class="demo-button" onclick="addPoints(100)" data-translate="test-points" style="background: var(--success); margin-right: 10px;">+100 Test Points</button>
+                <button class="demo-button" onclick="showUserStats()" style="background: var(--warning); margin-right: 10px;">📊 详细统计</button>
+                <button class="demo-button" onclick="logout()" data-translate="logout" style="background: var(--danger);">Logout</button>
+            </div>
+        </div>
+
+        <!-- Intent-Centric Demo Section -->
+        <div class="card">
+            <h3 data-translate="intent-demo">🎯 Intent-Centric Demo</h3>
+            <p data-translate="intent-desc" style="color: var(--muted); margin-bottom: 20px;">
+                Experience revolutionary intent-centric trading - express your trading needs in natural language and let AI find the best execution path for you!
+            </p>
+            
+            <div style="background: var(--surface); padding: 25px; border-radius: 15px; margin-bottom: 20px; border: 2px solid var(--anoma-primary);">
+                <h4 data-translate="enter-intent" style="color: var(--anoma-primary); margin-bottom: 15px;">💬 Enter Your Trading Intent</h4>
+                <input type="text" id="intent-input" data-translate="intent-placeholder" placeholder="e.g., I want to buy ETH with 100 USDC when ETH price is below $2000, then stake it on Lido for 5% APY" 
+                       style="width: 100%; padding: 15px; border: 2px solid var(--border); border-radius: 12px; font-size: 16px; background: var(--bg); color: var(--text); margin-bottom: 15px;">
+                
+                <div style="text-align: center;">
+                    <button class="demo-button" onclick="buildIntent()" data-translate="build-intent" style="background: var(--anoma-primary); margin-right: 10px;">Build Intent</button>
+                    <button class="demo-button" onclick="simulateExecution()" data-translate="simulate-execution" style="background: var(--success); margin-right: 10px;">Simulate Execution</button>
+                    <button class="demo-button" onclick="connectWallet()" data-translate="connect-wallet" style="background: var(--anoma-accent);">Connect Wallet</button>
+                </div>
+                
+                <div id="intent-result" style="margin-top: 20px; padding: 20px; background: var(--bg); border-radius: 12px; display: none; border: 1px solid var(--border);">
+                    <h4 data-translate="intent-success" style="color: var(--success); margin-bottom: 15px;">✅ Intent Generated Successfully!</h4>
+                    <div id="intent-details"></div>
                 </div>
             </div>
         </div>
@@ -1070,11 +1388,831 @@
     <div id="toast" class="toast"></div>
 
     <script>
+        // Login and User Management System
+        let currentUser = null;
+        let userData = {};
+
+        // Check if user is logged in on page load
+        window.addEventListener('load', function() {
+            checkLoginStatus();
+        });
+
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('anoma-user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                userData = JSON.parse(localStorage.getItem('anoma-user-data') || '{}');
+                showUserProfile();
+                updateUserStats();
+            } else {
+                showLoginModal();
+            }
+        }
+
+        function showLoginModal() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+
+        function hideLoginModal() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        function login() {
+            const username = document.getElementById('username-input').value.trim();
+            const email = document.getElementById('email-input').value.trim();
+            
+            if (!username) {
+                alert('请输入用户名！');
+                return;
+            }
+
+            // Check if user already exists
+            const existingUser = Object.values(userData).find(user => user.username === username);
+            if (existingUser) {
+                // Find the user ID
+                const userId = Object.keys(userData).find(id => userData[id].username === username);
+                currentUser = {
+                    username: username,
+                    email: email,
+                    id: userId,
+                    joinDate: existingUser.joinDate || new Date().toISOString()
+                };
+            } else {
+                // Create new user account
+                currentUser = {
+                    username: username,
+                    email: email,
+                    id: Date.now().toString(),
+                    joinDate: new Date().toISOString()
+                };
+
+                // Initialize user data for new user
+                userData[currentUser.id] = {
+                    points: 1000,  // 初始积分
+                    level: 1,
+                    gamesPlayed: 0,
+                    wins: 0,
+                    achievements: [],
+                    gameHistory: []
+                };
+            }
+
+            // Save to localStorage
+            localStorage.setItem('anoma-user', JSON.stringify(currentUser));
+            localStorage.setItem('anoma-user-data', JSON.stringify(userData));
+
+            hideLoginModal();
+            showUserProfile();
+            updateUserStats();
+            
+            alert(`欢迎来到 Anoma Academy, ${username}! 您的进度将自动保存。`);
+        }
+
+        function guestLogin() {
+            currentUser = {
+                username: '游客玩家',
+                email: '',
+                id: 'guest',
+                joinDate: new Date().toISOString()
+            };
+
+            userData = {
+                'guest': {
+                    points: 1000,
+                    level: 1,
+                    gamesPlayed: 0,
+                    wins: 0,
+                    achievements: [],
+                    gameHistory: []
+                }
+            };
+
+            hideLoginModal();
+            showUserProfile();
+            updateUserStats();
+            
+            alert('以游客身份游戏。您的进度仅在此会话中保存。');
+        }
+
+        function showUserProfile() {
+            document.getElementById('user-profile').style.display = 'block';
+            document.getElementById('user-name').textContent = currentUser.username;
+        }
+
+        function updateUserStats() {
+            if (!currentUser || !userData[currentUser.id]) return;
+
+            const user = userData[currentUser.id];
+            document.getElementById('user-points').textContent = user.points;
+            document.getElementById('user-level').textContent = user.level;
+            document.getElementById('user-games').textContent = user.gamesPlayed;
+            document.getElementById('user-wins').textContent = user.wins;
+
+            // Update main stats display
+            document.getElementById('points').textContent = user.points;
+            document.getElementById('level').textContent = user.level;
+            document.getElementById('games-played').textContent = user.gamesPlayed;
+            document.getElementById('wins').textContent = user.wins;
+        }
+
+        function saveUserProgress(pointsEarned = 0, gameWon = false) {
+            if (!currentUser || !userData[currentUser.id]) return;
+
+            const user = userData[currentUser.id];
+            const oldPoints = user.points;
+            user.points += pointsEarned;
+            user.gamesPlayed += 1;
+            if (gameWon) user.wins += 1;
+
+            // Level up calculation
+            const newLevel = Math.floor(user.points / 1000) + 1;
+            if (newLevel > user.level) {
+                user.level = newLevel;
+                alert(`🎉 升级了！您现在等级 ${user.level}！`);
+            }
+
+            // Save to localStorage
+            localStorage.setItem('anoma-user-data', JSON.stringify(userData));
+            updateUserStats();
+            
+            // Show points earned notification
+            if (pointsEarned > 0) {
+                showPointsNotification(pointsEarned, user.points);
+            }
+        }
+
+        function showPointsNotification(pointsEarned, totalPoints) {
+            // Create a floating notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #00d4ff, #10b981);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                font-weight: bold;
+                z-index: 10000;
+                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+                animation: slideInRight 0.5s ease;
+            `;
+            notification.innerHTML = `+${pointsEarned} 积分！<br>总计: ${totalPoints}`;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        function logout() {
+            currentUser = null;
+            userData = {};
+            document.getElementById('user-profile').style.display = 'none';
+            showLoginModal();
+        }
+
+        // Add points directly to user account
+        function addPoints(points) {
+            if (!currentUser || !userData[currentUser.id]) return;
+            
+            const user = userData[currentUser.id];
+            user.points += points;
+            
+            // Level up calculation
+            const newLevel = Math.floor(user.points / 1000) + 1;
+            if (newLevel > user.level) {
+                user.level = newLevel;
+                alert(`🎉 升级了！您现在等级 ${user.level}！`);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('anoma-user-data', JSON.stringify(userData));
+            updateUserStats();
+            
+            // Show points notification
+            showPointsNotification(points, user.points);
+        }
+
+
+        // Close modal function
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal, .requirements-modal');
+            modals.forEach(modal => modal.remove());
+        }
+
+        // Intent-Centric Trading Functions
+        function buildIntent() {
+            const input = document.getElementById('intent-input').value;
+            if (!input.trim()) {
+                const isChinese = currentLanguage === 'zh';
+                const message = isChinese ? '请输入您的交易意图！' : 'Please enter your trading intent!';
+                alert(message);
+                return;
+            }
+
+            // Simulate AI processing
+            const intent = {
+                originalText: input,
+                action: extractAction(input),
+                tokens: extractTokens(input),
+                protocols: extractProtocols(input),
+                conditions: extractConditions(input),
+                confidence: calculateConfidence(input),
+                estimatedGas: calculateGasEstimate(input),
+                riskLevel: assessRisk(input),
+                executionPath: generateExecutionPath(input)
+            };
+
+            displayIntentResult(intent);
+            document.getElementById('intent-result').style.display = 'block';
+        }
+
+        function extractAction(text) {
+            const lowerText = text.toLowerCase();
+            if (lowerText.includes('swap') || lowerText.includes('exchange') || lowerText.includes('购买') || lowerText.includes('交换')) return 'swap';
+            if (lowerText.includes('stake') || lowerText.includes('质押')) return 'stake';
+            if (lowerText.includes('lend') || lowerText.includes('supply') || lowerText.includes('借贷')) return 'lend';
+            if (lowerText.includes('borrow') || lowerText.includes('借款')) return 'borrow';
+            if (lowerText.includes('provide') || lowerText.includes('add liquidity') || lowerText.includes('提供流动性')) return 'provide';
+            if (lowerText.includes('withdraw') || lowerText.includes('提取')) return 'withdraw';
+            if (lowerText.includes('bridge') || lowerText.includes('跨链')) return 'bridge';
+            return 'complex_trading';
+        }
+
+        function extractTokens(text) {
+            const tokens = [];
+            const tokenMap = {
+                'USDC': ['usdc', 'usd coin'],
+                'ETH': ['eth', 'ethereum', '以太坊'],
+                'USDT': ['usdt', 'tether'],
+                'DAI': ['dai', 'dai stablecoin'],
+                'WBTC': ['wbtc', 'wrapped bitcoin']
+            };
+            
+            Object.entries(tokenMap).forEach(([token, keywords]) => {
+                if (keywords.some(keyword => text.toLowerCase().includes(keyword))) {
+                    tokens.push(token);
+                }
+            });
+            
+            return tokens;
+        }
+
+        function extractProtocols(text) {
+            const protocols = [];
+            const protocolMap = {
+                'Uniswap': ['uniswap', 'uni'],
+                'SushiSwap': ['sushiswap', 'sushi'],
+                'Aave': ['aave', 'lending', '借贷'],
+                'Compound': ['compound', 'comp'],
+                'Lido': ['lido', 'stake', '质押'],
+                'Curve': ['curve', 'crv']
+            };
+            
+            Object.entries(protocolMap).forEach(([protocol, keywords]) => {
+                if (keywords.some(keyword => text.toLowerCase().includes(keyword))) {
+                    protocols.push(protocol);
+                }
+            });
+            
+            return protocols;
+        }
+
+        function extractConditions(text) {
+            const conditions = [];
+            const lowerText = text.toLowerCase();
+            
+            // Price conditions
+            const priceRegex = /(?:when|if|当|如果)\s+(?:price|cost|价格|成本)\s+(?:is|drops?|rises?|goes?|是|低于|高于|超过)\s+(\$?)(\d+(?:\.\d+)?)/gi;
+            const priceMatches = text.match(priceRegex);
+            
+            if (priceMatches) {
+                priceMatches.forEach(match => {
+                    const valueMatch = match.match(/(\d+(?:\.\d+)?)/);
+                    if (valueMatch) {
+                        conditions.push({
+                            type: 'price',
+                            operator: match.includes('below') || match.includes('under') || match.includes('低于') ? 'less_than' : 'greater_than',
+                            value: parseFloat(valueMatch[1]),
+                            description: match.trim()
+                        });
+                    }
+                });
+            }
+            
+            return conditions;
+        }
+
+        function calculateConfidence(text) {
+            let confidence = 0;
+            const lowerText = text.toLowerCase();
+            
+            if (lowerText.includes('swap') || lowerText.includes('stake') || lowerText.includes('lend') || lowerText.includes('购买') || lowerText.includes('质押')) confidence += 20;
+            if (lowerText.includes('usdc') || lowerText.includes('eth') || lowerText.includes('usdt') || lowerText.includes('以太坊')) confidence += 20;
+            if (/\d+/.test(text)) confidence += 20;
+            if (lowerText.includes('uniswap') || lowerText.includes('aave') || lowerText.includes('lido')) confidence += 20;
+            if (lowerText.includes('when') || lowerText.includes('if') || lowerText.includes('below') || lowerText.includes('above') || lowerText.includes('当') || lowerText.includes('如果') || lowerText.includes('低于') || lowerText.includes('高于')) confidence += 20;
+            
+            return Math.min(confidence, 100);
+        }
+
+        function calculateGasEstimate(text) {
+            let baseGas = 100000;
+            const lowerText = text.toLowerCase();
+            
+            if (lowerText.includes('swap') || lowerText.includes('购买')) baseGas += 100000;
+            if (lowerText.includes('stake') || lowerText.includes('质押')) baseGas += 150000;
+            if (lowerText.includes('lend') || lowerText.includes('借贷')) baseGas += 200000;
+            if (lowerText.includes('bridge') || lowerText.includes('跨链')) baseGas += 250000;
+            if (lowerText.includes('when') || lowerText.includes('if') || lowerText.includes('当') || lowerText.includes('如果')) baseGas += 50000;
+            
+            const protocolCount = (lowerText.match(/uniswap|aave|lido|compound|curve/g) || []).length;
+            baseGas += protocolCount * 30000;
+            
+            return (baseGas / 1000000).toFixed(4) + ' ETH';
+        }
+
+        function assessRisk(text) {
+            let riskScore = 0;
+            const lowerText = text.toLowerCase();
+            
+            if (lowerText.includes('bridge') || lowerText.includes('跨链')) riskScore += 3;
+            if (lowerText.includes('borrow') || lowerText.includes('借款')) riskScore += 2;
+            if (lowerText.includes('when') || lowerText.includes('if') || lowerText.includes('当') || lowerText.includes('如果')) riskScore += 2;
+            if (lowerText.includes('automatically') || lowerText.includes('auto') || lowerText.includes('自动')) riskScore += 2;
+            
+            const protocolCount = (lowerText.match(/uniswap|aave|lido|compound|curve/g) || []).length;
+            if (protocolCount > 2) riskScore += 2;
+            
+            if (riskScore <= 2) return 'low';
+            if (riskScore <= 5) return 'medium';
+            return 'high';
+        }
+
+        function generateExecutionPath(text) {
+            const steps = [];
+            const lowerText = text.toLowerCase();
+            
+            if (lowerText.includes('swap') || lowerText.includes('购买')) {
+                steps.push('批准代币用于交换');
+                steps.push('在DEX上执行交换');
+            }
+            
+            if (lowerText.includes('stake') || lowerText.includes('质押')) {
+                steps.push('批准代币用于质押');
+                steps.push('在协议上质押代币');
+            }
+            
+            if (lowerText.includes('lend') || lowerText.includes('借贷')) {
+                steps.push('批准代币用于借贷');
+                steps.push('向借贷协议提供代币');
+            }
+            
+            if (lowerText.includes('bridge') || lowerText.includes('跨链')) {
+                steps.push('批准代币用于跨链桥');
+                steps.push('执行跨链桥交易');
+            }
+            
+            if (lowerText.includes('when') || lowerText.includes('if') || lowerText.includes('当') || lowerText.includes('如果')) {
+                steps.push('监控市场条件');
+                steps.push('条件满足时执行');
+            }
+            
+            return steps;
+        }
+
+        function displayIntentResult(intent) {
+            const resultDiv = document.getElementById('intent-details');
+            const isChinese = currentLanguage === 'zh';
+            
+            resultDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div><strong>${isChinese ? '动作' : 'Action'}:</strong> <span style="color: var(--anoma-primary);">${intent.action}</span></div>
+                    <div><strong>${isChinese ? '置信度' : 'Confidence'}:</strong> <span style="color: var(--success);">${intent.confidence}%</span></div>
+                    <div><strong>${isChinese ? '风险等级' : 'Risk Level'}:</strong> <span style="color: var(--warning);">${intent.riskLevel}</span></div>
+                    <div><strong>${isChinese ? 'Gas估算' : 'Gas Estimate'}:</strong> <span style="color: var(--anoma-accent);">${intent.estimatedGas}</span></div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>${isChinese ? '代币' : 'Tokens'}:</strong> ${intent.tokens.join(', ') || (isChinese ? '自动检测' : 'Auto-detected')}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>${isChinese ? '协议' : 'Protocols'}:</strong> ${intent.protocols.join(', ') || (isChinese ? '自动选择' : 'Auto-selected')}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>${isChinese ? '条件' : 'Conditions'}:</strong> ${intent.conditions.length} ${isChinese ? '个条件已检测' : 'conditions detected'}
+                </div>
+                <div>
+                    <strong>${isChinese ? '执行路径' : 'Execution Path'}:</strong> ${intent.executionPath.join(' → ')}
+                </div>
+            `;
+        }
+
+        function simulateExecution() {
+            const isChinese = currentLanguage === 'zh';
+            const message = isChinese ? 
+                '🚀 模拟意图执行...\n\n在真实实现中，这将在选定的区块链网络上执行您的意图。' :
+                '🚀 Simulating intent execution...\n\nIn a real implementation, this would execute your intent on the selected blockchain network.';
+            alert(message);
+        }
+
+        function connectWallet() {
+            const isChinese = currentLanguage === 'zh';
+            const message = isChinese ? 
+                '💼 连接钱包...\n\n在真实实现中，这将连接到您的MetaMask或其他钱包。' :
+                '💼 Connecting wallet...\n\nIn a real implementation, this would connect to your MetaMask or other wallet.';
+            alert(message);
+        }
+
+        // User Statistics Modal
+        function showUserStats() {
+            if (!currentUser || !userData[currentUser.id]) return;
+            
+            const user = userData[currentUser.id];
+            const isChinese = currentLanguage === 'zh';
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'flex';
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.background = 'rgba(0, 0, 0, 0.9)';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.zIndex = '10000';
+            modal.style.backdropFilter = 'blur(10px)';
+            modal.innerHTML = `
+                <div style="background: var(--bg); border-radius: 20px; padding: 40px; max-width: 900px; width: 95%; max-height: 90vh; overflow-y: auto; border: 2px solid var(--anoma-primary); box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h2 style="color: var(--anoma-primary); font-size: 2.5rem; margin-bottom: 10px; background: var(--anoma-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">📊 ${isChinese ? '用户详细统计' : 'User Detailed Statistics'}</h2>
+                        <p style="color: var(--muted);">${isChinese ? '您的学习进度和游戏成就' : 'Your learning progress and game achievements'}</p>
+                    </div>
+
+                    <div style="margin-bottom: 30px; padding: 25px; background: var(--surface); border-radius: 15px; border-left: 4px solid var(--anoma-primary);">
+                        <h3 style="color: var(--anoma-primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">🎯 ${isChinese ? '学习进度' : 'Learning Progress'}</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+                            <div style="background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border);">
+                                <h4 style="color: var(--success); margin-bottom: 10px;">${isChinese ? '已完成课程' : 'Completed Lessons'}</h4>
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--anoma-primary);">${user.lessonsCompleted || 0}/6</div>
+                                <div style="font-size: 0.9rem; color: var(--muted);">${isChinese ? '课程完成率' : 'Completion Rate'}: ${Math.round((user.lessonsCompleted || 0) / 6 * 100)}%</div>
+                            </div>
+                            <div style="background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border);">
+                                <h4 style="color: var(--warning); margin-bottom: 10px;">${isChinese ? '游戏成就' : 'Game Achievements'}</h4>
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--anoma-accent);">${user.achievements?.length || 0}</div>
+                                <div style="font-size: 0.9rem; color: var(--muted);">${isChinese ? '获得成就' : 'Achievements Unlocked'}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 30px; padding: 25px; background: var(--surface); border-radius: 15px; border-left: 4px solid var(--anoma-primary);">
+                        <h3 style="color: var(--anoma-primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">🎮 ${isChinese ? '游戏统计' : 'Game Statistics'}</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                            <div style="background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border); text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--success);">${user.gamesPlayed || 0}</div>
+                                <div style="font-size: 0.9rem; color: var(--muted);">${isChinese ? '总游戏次数' : 'Total Games'}</div>
+                            </div>
+                            <div style="background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border); text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--warning);">${user.wins || 0}</div>
+                                <div style="font-size: 0.9rem; color: var(--muted);">${isChinese ? '胜利次数' : 'Wins'}</div>
+                            </div>
+                            <div style="background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border); text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--anoma-primary);">${user.points || 0}</div>
+                                <div style="font-size: 0.9rem; color: var(--muted);">${isChinese ? '总积分' : 'Total Points'}</div>
+                            </div>
+                            <div style="background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border); text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--anoma-accent);">${user.level || 1}</div>
+                                <div style="font-size: 0.9rem; color: var(--muted);">${isChinese ? '当前等级' : 'Current Level'}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 30px; padding: 25px; background: var(--surface); border-radius: 15px; border-left: 4px solid var(--anoma-primary);">
+                        <h3 style="color: var(--anoma-primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">🏆 ${isChinese ? '最近成就' : 'Recent Achievements'}</h3>
+                        <div style="margin: 20px 0;">
+                            ${(user.achievements || []).length > 0 ? 
+                                (user.achievements || []).map(achievement => `
+                                    <div style="background: var(--bg); padding: 10px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="font-size: 1.2rem;">🏆</span>
+                                        <span>${achievement}</span>
+                                    </div>
+                                `).join('') :
+                                `<div style="text-align: center; color: var(--muted); padding: 20px;">
+                                    ${isChinese ? '还没有获得成就，继续努力！' : 'No achievements yet, keep playing!'}
+                                </div>`
+                            }
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="demo-button" onclick="closeModal()" style="background: var(--anoma-primary);">
+                            ${isChinese ? '关闭' : 'Close'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        }
+
         // Language switching functionality
         let currentLanguage = 'en'; // Default English
         
         // English and Chinese text content
         const translations = {
+            en: {
+                'play-games': '🎮 Play Games with Your Points',
+                'games-desc': 'Use your earned points to play games that teach you more about Anoma concepts.',
+                'knowledge-games': '🧠 Knowledge Games',
+                'puzzle-games': '🧩 Puzzle Games',
+                'action-games': '⚡ Action Games',
+                'play': 'Play',
+                'cost': 'Cost',
+                'points': 'points',
+                'welcome': 'Welcome to Anoma Academy!',
+                'login-desc': 'Create an account to save your progress and compete with other players!',
+                'username': 'Enter username',
+                'email': 'Enter email (optional)',
+                'login-register': 'Login / Register',
+                'guest-mode': 'Guest Mode',
+                'welcome-user': 'Welcome, ',
+                'progress-saved': 'Your progress is automatically saved to your account.',
+                'total-points': 'Total Points',
+                'level': 'Level',
+                'games-played': 'Games Played',
+                'wins': 'Wins',
+                'test-points': '+100 Test Points',
+                'logout': 'Logout',
+                'intent-demo': '🎯 Intent-Centric Demo',
+                'intent-desc': 'Experience revolutionary intent-centric trading - express your trading needs in natural language and let AI find the best execution path for you!',
+                'enter-intent': '💬 Enter Your Trading Intent',
+                'intent-placeholder': 'e.g., I want to buy ETH with 100 USDC when ETH price is below $2000, then stake it on Lido for 5% APY',
+                'build-intent': 'Build Intent',
+                'simulate-execution': 'Simulate Execution',
+                'connect-wallet': 'Connect Wallet',
+                'intent-success': '✅ Intent Generated Successfully!',
+                'action': 'Action',
+                'confidence': 'Confidence',
+                'risk-level': 'Risk Level',
+                'gas-estimate': 'Gas Estimate',
+                'tokens': 'Tokens',
+                'protocols': 'Protocols',
+                'conditions': 'Conditions',
+                'execution-path': 'Execution Path',
+                'close': 'Close',
+                'learn-concepts': '🎓 Learn Anoma Concepts',
+                'learn-desc': 'Complete lessons to earn points and unlock games. Each lesson teaches you about Anoma\'s core concepts.',
+                'lesson1-title': '🌱 What is Anoma?',
+                'lesson1-desc': 'Learn the basics of intent-centric blockchain',
+                'lesson2-title': '⚡ Intent System',
+                'lesson2-desc': 'Understand how intents work in Anoma',
+                'lesson3-title': '🔐 Privacy & ZK',
+                'lesson3-desc': 'Learn about zero-knowledge proofs',
+                'lesson4-title': '🌐 Cross-Chain',
+                'lesson4-desc': 'Understand cross-chain operations',
+                'lesson5-title': '🎯 Advanced Intents',
+                'lesson5-desc': 'Master complex intent strategies',
+                'lesson6-title': '🏆 Anoma Master',
+                'lesson6-desc': 'Become an Anoma expert',
+                'reward-50': 'Reward: 50 points',
+                'reward-100': 'Reward: 100 points',
+                'play-game': 'Play Game',
+                'cost-20': 'Cost: 20 points',
+                'cost-25': 'Cost: 25 points',
+                'cost-30': 'Cost: 30 points',
+                'cost-35': 'Cost: 35 points',
+                'cost-50': 'Cost: 50 points',
+                'cost-60': 'Cost: 60 points',
+                'anoma-quiz': '🧠 Anoma Quiz',
+                'anoma-quiz-desc': 'Test your knowledge about Anoma concepts',
+                'intent-matching': '🎯 Intent Matching Game',
+                'intent-matching-desc': 'Match intents with their optimal execution paths',
+                'intent-detective': '🔍 Intent Detective',
+                'intent-detective-desc': 'Analyze complex intents and find the best path',
+                'speed-intent': '⚡ Speed Intent',
+                'speed-intent-desc': 'Express intents as fast as possible',
+                'intent-dice': '🎲 Intent Dice',
+                'intent-dice-desc': 'Roll dice to build intent combinations',
+                'privacy-puzzle': '🔐 Privacy Puzzle',
+                'privacy-puzzle-desc': 'Solve puzzles using zero-knowledge concepts',
+                'privacy-puzzle-visual': '🧩 Privacy Puzzle (Visual)',
+                'privacy-puzzle-visual-desc': 'Drag and drop ZK proof components',
+                'anoma-memory': '🧠 Anoma Memory',
+                'anoma-memory-desc': 'Match Anoma concepts and test your memory',
+                'privacy-guardian': '🛡️ Privacy Guardian',
+                'privacy-guardian-desc': 'Protect user data using ZK proofs',
+                'intent-builder': '🎯 Intent Builder',
+                'intent-builder-desc': 'Create complex multi-step intents',
+                'tower-defense': '🎮 Intent Tower Defense',
+                'tower-defense-desc': 'Defend against attacks using Anoma tools',
+                'shrimp-jump': '🦐 Shrimp Jump Game',
+                'shrimp-jump-desc': 'Control the shrimp to jump and avoid obstacles',
+                'shrimp-collector': '🦐 Shrimp Collector',
+                'shrimp-collector-desc': 'Collect Anoma shrimps in this fun arcade game',
+                'wizard-coin': '🧙 Wizard Coin Game',
+                'wizard-coin-desc': 'Control wizard to catch falling coins',
+                'intent-archery': '🎯 Intent Archery',
+                'intent-archery-desc': 'Shoot intents at targets with precision',
+                'tetris': '🧩 Tetris',
+                'tetris-desc': 'Classic Tetris with Anoma-themed blocks',
+                'snake': '🐍 Snake Game',
+                'snake-desc': 'Classic Snake game with Anoma elements',
+                'memory': '🧠 Memory Game',
+                'memory-desc': 'Match pairs of Anoma concepts',
+                'puzzle': '🧩 Puzzle Game',
+                'puzzle-desc': 'Solve Anoma-themed puzzles',
+            },
+            zh: {
+                'play-games': '🎮 用积分玩游戏',
+                'games-desc': '使用您获得的积分来玩游戏，学习更多关于Anoma概念的知识。',
+                'knowledge-games': '🧠 知识游戏',
+                'puzzle-games': '🧩 谜题游戏',
+                'action-games': '⚡ 动作游戏',
+                'play': '开始',
+                'cost': '消耗',
+                'points': '积分',
+                'welcome': '欢迎来到Anoma学院！',
+                'login-desc': '创建账户保存您的进度并与其他玩家竞争！',
+                'username': '输入用户名',
+                'email': '输入邮箱 (可选)',
+                'login-register': '登录 / 注册',
+                'guest-mode': '游客模式',
+                'welcome-user': '欢迎, ',
+                'progress-saved': '您的进度已自动保存到您的账户中。',
+                'total-points': '总积分',
+                'level': '等级',
+                'games-played': '游戏次数',
+                'wins': '胜利次数',
+                'test-points': '+100 测试积分',
+                'logout': '退出登录',
+                'intent-demo': '🎯 意图中心演示',
+                'intent-desc': '体验革命性的意图中心交易 - 用自然语言表达您的交易需求，让AI为您找到最佳执行路径！',
+                'enter-intent': '💬 输入您的交易意图',
+                'intent-placeholder': '例如：我想在ETH价格低于$2000时用100 USDC购买ETH，然后在Lido上质押获得5%年化收益',
+                'build-intent': '构建意图',
+                'simulate-execution': '模拟执行',
+                'connect-wallet': '连接钱包',
+                'intent-success': '✅ 意图生成成功！',
+                'action': '动作',
+                'confidence': '置信度',
+                'risk-level': '风险等级',
+                'gas-estimate': 'Gas估算',
+                'tokens': '代币',
+                'protocols': '协议',
+                'conditions': '条件',
+                'execution-path': '执行路径',
+                'close': '关闭',
+                'learn-concepts': '🎓 学习Anoma概念',
+                'learn-desc': '完成课程获得积分并解锁游戏。每个课程都教授您Anoma的核心概念。',
+                'lesson1-title': '🌱 什么是Anoma？',
+                'lesson1-desc': '学习意图中心区块链的基础知识',
+                'lesson2-title': '⚡ 意图系统',
+                'lesson2-desc': '了解意图在Anoma中如何工作',
+                'lesson3-title': '🔐 隐私与零知识',
+                'lesson3-desc': '学习零知识证明',
+                'lesson4-title': '🌐 跨链',
+                'lesson4-desc': '了解跨链操作',
+                'lesson5-title': '🎯 高级意图',
+                'lesson5-desc': '掌握复杂的意图策略',
+                'lesson6-title': '🏆 Anoma大师',
+                'lesson6-desc': '成为Anoma专家',
+                'reward-50': '奖励：50积分',
+                'reward-100': '奖励：100积分',
+                'play-game': '开始游戏',
+                'cost-20': '消耗：20积分',
+                'cost-25': '消耗：25积分',
+                'cost-30': '消耗：30积分',
+                'cost-35': '消耗：35积分',
+                'cost-50': '消耗：50积分',
+                'cost-60': '消耗：60积分',
+                'anoma-quiz': '🧠 Anoma测验',
+                'anoma-quiz-desc': '测试您对Anoma概念的了解',
+                'intent-matching': '🎯 意图匹配游戏',
+                'intent-matching-desc': '将意图与其最佳执行路径匹配',
+                'intent-detective': '🔍 意图侦探',
+                'intent-detective-desc': '分析复杂意图并找到最佳路径',
+                'speed-intent': '⚡ 快速意图',
+                'speed-intent-desc': '尽可能快地表达意图',
+                'intent-dice': '🎲 意图骰子',
+                'intent-dice-desc': '掷骰子构建意图组合',
+                'privacy-puzzle': '🔐 隐私谜题',
+                'privacy-puzzle-desc': '使用零知识概念解决谜题',
+                'privacy-puzzle-visual': '🧩 隐私谜题（视觉）',
+                'privacy-puzzle-visual-desc': '拖拽ZK证明组件',
+                'anoma-memory': '🧠 Anoma记忆',
+                'anoma-memory-desc': '匹配Anoma概念并测试您的记忆',
+                'privacy-guardian': '🛡️ 隐私守护者',
+                'privacy-guardian-desc': '使用ZK证明保护用户数据',
+                'intent-builder': '🎯 意图构建器',
+                'intent-builder-desc': '创建复杂的多步骤意图',
+                'tower-defense': '🎮 意图塔防',
+                'tower-defense-desc': '使用Anoma工具防御攻击',
+                'shrimp-jump': '🦐 虾跳游戏',
+                'shrimp-jump-desc': '控制虾跳跃并避开障碍物',
+                'shrimp-collector': '🦐 虾收集者',
+                'shrimp-collector-desc': '在这个有趣的街机游戏中收集Anoma虾',
+                'wizard-coin': '🧙 巫师硬币游戏',
+                'wizard-coin-desc': '控制巫师接住掉落的硬币',
+                'intent-archery': '🎯 意图射箭',
+                'intent-archery-desc': '精确射击意图目标',
+                'tetris': '🧩 俄罗斯方块',
+                'tetris-desc': '带有Anoma主题方块的经典俄罗斯方块',
+                'snake': '🐍 贪吃蛇游戏',
+                'snake-desc': '带有Anoma元素的经典贪吃蛇游戏',
+                'memory': '🧠 记忆游戏',
+                'memory-desc': '匹配Anoma概念对',
+                'puzzle': '🧩 谜题游戏',
+                'puzzle-desc': '解决Anoma主题谜题',
+            }
+        };
+        // Language switching functions
+        function switchLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+            
+            // Update language button
+            const langButton = document.getElementById('lang-button');
+            if (langButton) {
+                langButton.textContent = currentLanguage === 'en' ? '中文' : 'English';
+            }
+            
+            // Update modal content if any modals are open
+            updateModalLanguage();
+        }
+
+        function updateModalLanguage() {
+            // Update project requirements modal
+            const requirementsModal = document.querySelector('.requirements-modal');
+            if (requirementsModal) {
+                updateRequirementsModalLanguage();
+            }
+            
+            // Update other modals as needed
+            updateGameModalLanguage();
+        }
+
+
+        function updateGameModalLanguage() {
+            // Update game modals if they exist
+            const gameModals = document.querySelectorAll('.modal');
+            gameModals.forEach(modal => {
+                const title = modal.querySelector('h3');
+                if (title && title.textContent.includes('Game')) {
+                    // Update game modal titles and content
+                    const isChinese = currentLanguage === 'zh';
+                    if (isChinese) {
+                        if (title.textContent.includes('Tetris')) title.textContent = '🧩 俄罗斯方块游戏';
+                        if (title.textContent.includes('Snake')) title.textContent = '🐍 贪吃蛇游戏';
+                        if (title.textContent.includes('Memory')) title.textContent = '🧠 记忆游戏';
+                        if (title.textContent.includes('Puzzle')) title.textContent = '🧩 谜题游戏';
+                    } else {
+                        if (title.textContent.includes('俄罗斯方块')) title.textContent = '🧩 Tetris Game';
+                        if (title.textContent.includes('贪吃蛇')) title.textContent = '🐍 Snake Game';
+                        if (title.textContent.includes('记忆')) title.textContent = '🧠 Memory Game';
+                        if (title.textContent.includes('谜题')) title.textContent = '🧩 Puzzle Game';
+                    }
+                }
+            });
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage();
+            
+            // Hide loading overlay after page loads
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500);
+                }
+            }, 1500);
+        });
+
+        const oldTranslations = {
             en: {
                 // Button text
                 'theme-text': 'Dark Mode',
@@ -2443,13 +3581,21 @@
 
         // Game functions
         function playIntentGame() {
-            if (gameState.points < 20) {
-                showToast('Not enough points!', 'error');
+            if (!currentUser || !userData[currentUser.id]) {
+                alert('请先登录！');
                 return;
             }
-            gameState.points -= 20;
-            gameState.gamesPlayed++;
-            updateStats();
+            
+            const user = userData[currentUser.id];
+            if (user.points < 20) {
+                showToast('积分不足！', 'error');
+                return;
+            }
+            
+            user.points -= 20;
+            user.gamesPlayed++;
+            localStorage.setItem('anoma-user-data', JSON.stringify(userData));
+            updateUserStats();
             showIntentGame();
         }
 
@@ -2524,13 +3670,21 @@
         }
 
         function playPuzzleGame() {
-            if (gameState.points < 35) {
-                showToast('Not enough points!', 'error');
+            if (!currentUser || !userData[currentUser.id]) {
+                alert('请先登录！');
                 return;
             }
-            gameState.points -= 35;
-            gameState.gamesPlayed++;
-            updateStats();
+            
+            const user = userData[currentUser.id];
+            if (user.points < 35) {
+                showToast('积分不足！', 'error');
+                return;
+            }
+            
+            user.points -= 35;
+            user.gamesPlayed++;
+            localStorage.setItem('anoma-user-data', JSON.stringify(userData));
+            updateUserStats();
             showPrivacyGame();
         }
 
@@ -2647,8 +3801,16 @@
 
             function endPuzzleGame() {
                 const pointsEarned = Math.floor(score * 15);
-                gameState.points += pointsEarned;
-                updateStats();
+                
+                // 给用户添加积分
+                if (currentUser && userData[currentUser.id]) {
+                    const user = userData[currentUser.id];
+                    user.points += pointsEarned;
+                    user.wins += 1;
+                    localStorage.setItem('anoma-user-data', JSON.stringify(userData));
+                    updateUserStats();
+                    showPointsNotification(pointsEarned, user.points);
+                }
                 
                 document.getElementById('puzzle-game-content').innerHTML = `
                     <div style="text-align: center;">
