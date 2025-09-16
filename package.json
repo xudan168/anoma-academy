@@ -1,0 +1,45 @@
+{
+  "name": "anoma-academy",
+  "version": "1.0.0",
+  "description": "A revolutionary gamified learning platform that teaches Anoma's intent-centric blockchain technology through interactive games and real-world trading simulations.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "npx live-server --port=8000"
+  },
+  "keywords": [
+    "anoma",
+    "blockchain",
+    "intent-centric",
+    "education",
+    "gamification",
+    "trading",
+    "defi",
+    "web3",
+    "learning",
+    "interactive"
+  ],
+  "author": "Anoma Academy Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/anoma-academy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/anoma-academy/issues"
+  },
+  "homepage": "https://github.com/your-username/anoma-academy#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
